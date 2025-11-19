@@ -17,9 +17,15 @@ const animalImages: Record<string, string> = {
   ovelha: sheep.src
 };
 
+const consultationColor: Record<string, string> = {
+  "Primeira Consulta": "#BFB5FF",
+  "Retorno": "#FF641999",
+  "Check-up": "#9CFF95",
+  "Vacinação": "#AAE1FF",
+};
 
 interface PetCardProps {
-  imageSrc: string;
+  imageSrc?: string;
   date: string;
   time: string;
   doctor: string;
@@ -27,8 +33,6 @@ interface PetCardProps {
   ownerName: string;
   consulta: string;
   petType: string;
-  onClick: () => void;
-  onFavorite?: () => void;
 }
 
 export const PetCard = ({
@@ -39,23 +43,34 @@ export const PetCard = ({
   ownerName,
   petType,
   consulta,
-  onClick,
 }: PetCardProps) => {
+
+  const today = new Date();
+  const [day, month] = date.split("/").map(Number);
+  const consultationDate = new Date(today.getFullYear(), month - 1, day);
+  const isExpired = consultationDate < today;
+  const cardColor = isExpired ? "#F0F0F0" : consultationColor[consulta];
+
   return (
-    <div className="flex w-[494.67px] bg-[#BFB5FF] rounded-[16px] items-center py-[22.5px] px-6 justify-between h-[fit]"> 
+    <div
+      style={{
+        backgroundColor: cardColor,
+      }}
+      className="flex w-[494.67px] bg-[#BFB5FF] rounded-[16px] items-center  px-6  justify-between h-min-[135px] h-[fit]"> 
 
       {/*BOX CINZA (lado esquerdo) */}
       <div className="
-        bg-[#F0F0F0] 
+        bg-[#FFFFFFCC] 
         rounded-[4px]
         flex flex-col items-center justify-center 
         gap-2
-        p-4 
-        w-fit h-fit 
+        px-[6px]
+        py-[12px]
+        w-[51px] h-[90px] 
       ">
         <img src={alarm.src} alt="Alarme" className="w-[20px] h-[20px]" />
-        <p className="text-black-700 font-medium text-[14px]">{date}</p>
-        <p className="text-black-700 font-medium text-[14px]">{time}</p>
+        <p className="text-black-400 font-medium text-[14px]">{date}</p>
+        <p className="text-black-400 font-medium text-[14px]">{time}</p>
       </div>
 
       {/* CONTEÚDO CENTRAL E DR. */}
@@ -79,7 +94,7 @@ export const PetCard = ({
           </div>
 
           <div className="ml-6"> 
-            <span className="text-[14px] font-medium text-black-600">
+            <span className="text-[14px] font-medium weight-400">
               {doctor}
             </span>
           </div>
@@ -100,16 +115,16 @@ export const PetCard = ({
 
         {/* barra com o tipo da consulta */}
         <div className="
-        bg-[#F0F0F0] 
+        bg-[#FFFFFFCC] 
         rounded-[4px]
         flex flex-col justify-center 
-        px-3      
+              
         py-1   
-        w-[101px] 
+        w-[101px]
         h-fit
         mt-[8px] mb-[16px]
         ">
-          <span className='text-[12px] flex items-center justify-center'>
+          <span className='text-[12px] flex items-center justify-center '>
           {consulta}
           </span>
         </div>
