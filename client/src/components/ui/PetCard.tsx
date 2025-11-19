@@ -32,7 +32,6 @@ interface PetCardProps {
 }
 
 export const PetCard = ({
-  imageSrc,
   date,
   time,
   doctor,
@@ -43,70 +42,68 @@ export const PetCard = ({
   onClick,
 }: PetCardProps) => {
   return (
-    // CARD PAI
-    <div className="flex w-[494.67px] bg-[#BFB5FF] rounded-[16px] g">
+    <div className="flex w-[494.67px] bg-[#BFB5FF] rounded-[16px] items-center py-[22.5px] px-6 justify-between h-[fit]"> 
 
-      {/* BOX CINZA (lado esquerdo) */}
+      {/*BOX CINZA (lado esquerdo) */}
       <div className="
-        bg-[#D9D9D9] 
+        bg-[#F0F0F0] 
         rounded-[4px]
         flex flex-col items-center justify-center 
         gap-2
         p-4 
         w-fit h-fit 
-        ml-[24px] mt-[22.5px] mb-[22.5px]
       ">
         <img src={alarm.src} alt="Alarme" className="w-[20px] h-[20px]" />
-        <p className="text-gray-700 font-medium">{date}</p>
-        <p className="text-gray-700 font-medium">{time}</p>
+        <p className="text-black-700 font-medium text-[14px]">{date}</p>
+        <p className="text-black-700 font-medium text-[14px]">{time}</p>
       </div>
 
-      {/* CONTEÚDO DIREITO */}
-      <div className="flex flex-col justify-center ml-4">
+      {/* CONTEÚDO CENTRAL E DR. */}
+      <div className="flex flex-col justify-center flex-grow ml-6"> 
+        
+        {/* LINHA PRINCIPAL: PetName / ownerName / Doctor */}
+        <div className="flex items-center"> 
+          
+          {/* Nomes (Pet / Owner) */}
+          <div className="flex items-center">
+            <span className="text-[14px] font-bold text-gray-900">
+              {petName}
+            </span>
 
-        {/* LINHA: petName / ownerName / doctor */}
-        <div className="flex items-center">
+            <span className="text-gray-500 text-[14px] mx-1">/</span>
 
-          {/* PetName */}
-          <span className="text-[14px] font-bold text-gray-900 ml-[33.56px]">
-            {petName}
-          </span>
+            {/* Owner */}
+            <span className="font-medium text-black-600 text-[14px]">
+              {ownerName}
+            </span>
+          </div>
 
-          {/* Barra */}
-          <span className="text-gray-500 text-[14px] mx-1">/</span>
-
-          {/* Owner */}
-          <span className="font-medium text-black-600 text-[14px]">
-            {ownerName}
-          </span>
-
-          {/* Doctor (afastado 33.36px) */}
-          <span className="text-[14px] font-medium text-black-600 ml-[33.56px]">
-            {doctor}
-          </span>
-
+          <div className="ml-6"> 
+            <span className="text-[14px] font-medium text-black-600">
+              {doctor}
+            </span>
+          </div>
         </div>
       </div>
 
 
-
-      <div className="flex flex-col items-center justify-center ml-[33.56px] mr-[24px]">
+      {/* CONTEÚDO DIREITO (Imagem e Tipo de Consulta) */}
+      <div className="flex flex-col items-center justify-center ml-6">
         {/* imagem pet */}
         <div>
           <img 
           src = {animalImages[petType]}
           className="w-[69px] h-[70px] mt-[16px]"
           />
-
         </div>
 
 
         {/* barra com o tipo da consulta */}
         <div className="
-        bg-[#D9D9D9] 
+        bg-[#F0F0F0] 
         rounded-[4px]
         flex flex-col justify-center 
-        px-3       
+        px-3      
         py-1   
         w-[101px] 
         h-fit
@@ -115,8 +112,6 @@ export const PetCard = ({
           <span className='text-[12px] flex items-center justify-center'>
           {consulta}
           </span>
-
-
         </div>
       </div>
 
