@@ -17,7 +17,7 @@ const animalImages: Record<string, string> = {
   ovelha: sheep.src
 };
 
-const consultationColor: Record<string, string> = {
+const appointmentColor: Record<string, string> = {
   "Primeira Consulta": "#BFB5FF",
   "Retorno": "#FF641999",
   "Check-up": "#9CFF95",
@@ -31,7 +31,7 @@ interface PetCardProps {
   doctor: string;
   petName: string;
   ownerName: string;
-  consulta: string;
+  appointment: string;
   petType: string;
 }
 
@@ -42,14 +42,14 @@ export const PetCard = ({
   petName,
   ownerName,
   petType,
-  consulta,
+  appointment,
 }: PetCardProps) => {
 
   const today = new Date();
   const [day, month] = date.split("/").map(Number);
   const consultationDate = new Date(today.getFullYear(), month - 1, day);
   const isExpired = consultationDate < today;
-  const cardColor = isExpired ? "#F0F0F0" : consultationColor[consulta];
+  const cardColor = isExpired ? "#F0F0F0" : appointmentColor[appointment];
 
   return (
     <div
@@ -125,7 +125,7 @@ export const PetCard = ({
         mt-[8px] mb-[16px]
         ">
           <span className='text-[12px] flex items-center justify-center '>
-          {consulta}
+          {appointment}
           </span>
         </div>
       </div>
