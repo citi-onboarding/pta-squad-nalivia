@@ -1,12 +1,6 @@
 import React from 'react';
-import alarm from '../../assets/Icons/alarm.png';
 
-import dog from "../../assets/Pets/dog.png";
-import cat from "../../assets/Pets/cat.png";
-import cow from "../../assets/Pets/cow.png";
-import horse from "../../assets/Pets/horse.png";
-import pig from "../../assets/Pets/pig.png";
-import sheep from "../../assets/Pets/sheep.png";
+import { dog, cat, cow, horse, pig, sheep, alarm} from "../../assets"
 
 const animalImages: Record<string, string> = {
   cachorro: dog.src,
