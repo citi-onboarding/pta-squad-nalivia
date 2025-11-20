@@ -18,6 +18,7 @@ import close from "./Icons/close.png"
 
 // Logos and others
 import LogoPet from "./Logos/LogoPet.png"
+import LogoCITi from "./Logos/Logo.png"
 import favorite from "./Logos/favorite.png"
 
-export { LogoPet, favorite, cat, cow, dog, horse, pig, sheep, alarm, arrow, arrow_down, arrow_back, check, close, calendar, add };
+export { LogoCITi, LogoPet, favorite, cat, cow, dog, horse, pig, sheep, alarm, arrow, arrow_down, arrow_back, check, close, calendar, add };
