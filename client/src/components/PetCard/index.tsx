@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { dog, cat, cow, horse, pig, sheep, alarm} from "../../assets"
+import { dog, cat, cow, horse, pig, sheep, alarm} from "@/assets"
 
 const animalImages: Record<string, string> = {
   cachorro: dog.src,
