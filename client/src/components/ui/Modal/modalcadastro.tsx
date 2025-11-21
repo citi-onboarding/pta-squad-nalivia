@@ -2,8 +2,7 @@
 import { useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
-import { close } from "../../../assets";
-import { LogoPet } from "../../../assets";
+import {close, LogoPet} from "@/assets";
 
 
 interface ModalProps {
@@ -31,9 +30,9 @@ export default function ModalCadastro({isOpen, onClose}: ModalProps) {
     if (!isOpen) return null;
 
     return(
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-white/60 backdrop-blur-sm">  
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-md">  
     
-            <div className="relative w-[408px] h-[423px] bg-white rounded-[24px] p-10 shadow-xl animate-in fade-in zoom-in duration-200 flex flex-col items-center">
+            <div className="relative w-[408px] h-[423px] bg-white rounded-[24px] p-8 shadow-xl animate-in fade-in zoom-in duration-200 flex flex-col gap-6">
 
                 <button 
                     onClick={onClose} 
@@ -44,32 +43,32 @@ export default function ModalCadastro({isOpen, onClose}: ModalProps) {
                 </button>
 
 
-                <div className="mb-6 mt-4 flex items-center justify-center">
-                    <Image src={LogoPet} alt="LogoCiti" width={189} height={74} />
+                <div className="flex justify-center mt-2">
+                    <Image src={LogoPet} alt="LogoCiti"/>
                 </div>
                 
 
-                <div className="mb-6 flex items-center justify-center px-4">
-                    <p className="text-lg text-[#1C1C1C] text-center leading-tight">
+                <div className="flex justify-center px-4">
+                    <p className="text-lg text-[#1C1C1C] text-center">
                         <span className="font-bold">Cadastro finalizado! </span>
                         Envie o comprovante para o
                         <span className="font-bold text-[#1C1C1C]"> tutor</span>.
                     </p>
                 </div>
 
-            <form onSubmit={handleSubmit(onSubmit)} className="w-full flex flex-col gap-6"> 
+            <form onSubmit={handleSubmit(onSubmit)} className="w-full flex flex-col items-center gap-6 mt-2"> 
 
-                <div className="flex flex-col gap-2 w-full">
+                <div className="w-[312px] h-[80px] flex flex-col justify-between">
                     <label className="font-bold text-[#1C1C1C]">E-mail</label>
                     <input 
                     type="text"
                     {...register("email")}
                     placeholder="Digite aqui..."
-                    className="border rounded-lg p-3"
+                    className="w-full h-[50px] rounded-[8px] border-black border p-[16px]"
                     ></input>
                 </div>
 
-                <div className="flex items-center justify-center mt-2">
+                <div className="flex flex-col justify-between">
                     <Button variant="default" size="lg" type="submit">Enviar</Button>
                 </div>
                 
@@ -82,4 +81,3 @@ export default function ModalCadastro({isOpen, onClose}: ModalProps) {
         
     )
 }
-

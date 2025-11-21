@@ -2,8 +2,7 @@
 import { useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
-import { close } from "../../../assets";
-import { LogoPet } from "../../../assets";
+import {close, LogoPet} from "@/assets";
 
 
 interface ModalProps {
@@ -34,9 +33,9 @@ export default function ModalNovaConsulta({isOpen, onClose}: ModalProps) {
     if (!isOpen) return null;
 
     return(
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-white/60 backdrop-blur-sm">  
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-md">  
     
-            <div className="relative w-full max-w-4xl bg-white rounded-[24px] p-10 shadow-xl animate-in fade-in zoom-in duration-200">
+            <div className="relative w-full max-w-4xl bg-white rounded-[24px] p-8 shadow-xl animate-in fade-in zoom-in duration-200">
 
                 <button 
                     onClick={onClose} 
@@ -45,26 +44,26 @@ export default function ModalNovaConsulta({isOpen, onClose}: ModalProps) {
                     
                     {close ? <Image src={close} alt="Fechar" width={12} height={12} /> : <span className="text-2xl font-bold text-gray-400">&times;</span>}
                 </button>
-                <div className="mb-8 flex items-center justify-center">
+                <div className="mb-8 flex justify-center">
                     <Image src={LogoPet} alt="LogoCiti" width={189} height={74} />
                 </div>
                 
 
-                <div className="mb-8 flex items-center justify-center">
-                    <p className="text-lg text-[#1C1C1C]">
+                <div className="mb-8 flex justify-center">
+                    <p className="text-lg text-[#1C1C1C] text-center">
                         <span className="font-bold">O pet já está cadastrado no sistema! </span>
                         Preencha os dados da 
                         <span className="font-bold text-[#1C1C1C]"> consulta</span>.
                     </p>
                 </div>
 
-                <form onSubmit={handleSubmit(onSubmit)} className="grid grid-cols-1 md:grid-cols-2 gap-6"> 
+        <form onSubmit={handleSubmit(onSubmit)} className="grid grid-cols-1 md:grid-cols-2 gap-6"> 
 
             <div className="flex flex-col gap-2">
                 <label className="font-bold text-[#1C1C1C]" >Tipo de consulta</label>
                 <select 
                  {...register("tipoconsulta")}
-                 className="border rounded-lg p-3"
+                 className="w-full h-[50px] rounded-[8px] border-black border p-[16px]"
                  >
                     <option value=""> Selecione</option>
                     <option value="tipo1"> Tipo 1</option>
@@ -81,7 +80,7 @@ export default function ModalNovaConsulta({isOpen, onClose}: ModalProps) {
                  type="text"
                  {...register("medico")}
                  placeholder="Digite aqui..."
-                 className="border rounded-lg p-3"
+                 className="w-full h-[50px] rounded-[8px] border-black border p-[16px]"
                  ></input>
             </div>
 
@@ -91,7 +90,7 @@ export default function ModalNovaConsulta({isOpen, onClose}: ModalProps) {
                  type="date"
                  {...register("dataatendimento")}
                  placeholder="dd/mm/aa"
-                 className="border rounded-lg p-3"
+                 className="w-full h-[50px] rounded-[8px] border-black border p-[16px]"
                  ></input>
             </div>
 
@@ -100,14 +99,16 @@ export default function ModalNovaConsulta({isOpen, onClose}: ModalProps) {
                 <input 
                  type="time"
                  {...register("horarioatendimento")}
-                 className="border rounded-lg p-3"
+                 className="w-full h-[50px] rounded-[8px] border-black border p-[16px]"
                  ></input>
             </div>
 
-            <div className="md:col-span-2 flex items-center justify-center">
+            <div className="md:col-span-2 flex justify-center">
             <Button variant="default" size="xxlg" type="submit">Finalizar Cadastro</Button>
             </div>
+
         </form>
+
             </div>
 
         
