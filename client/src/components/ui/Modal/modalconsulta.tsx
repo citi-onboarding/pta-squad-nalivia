@@ -2,7 +2,7 @@
 import { useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
-import {close, LogoPet} from "@/assets";
+import {close, LogoPet, arrow_down, calendar, alarm} from "@/assets";
 
 
 interface ModalProps {
@@ -61,17 +61,22 @@ export default function ModalNovaConsulta({isOpen, onClose}: ModalProps) {
 
             <div className="flex flex-col gap-2">
                 <label className="font-bold text-[#1C1C1C]" >Tipo de consulta</label>
-                <select 
-                 {...register("tipoconsulta")}
-                 className="w-full h-[50px] rounded-[8px] border-black border p-[16px]"
-                 >
-                    <option value=""> Selecione</option>
-                    <option value="tipo1"> Tipo 1</option>
-                    <option value="tipo2"> Tipo 2</option>
-                    <option value="tipo3"> Tipo 3</option>
-                    <option value="tipo4"> Tipo 4</option>
-                    <option value="tipo5"> Tipo 5</option>
-                 </select>
+                <div className="relative">
+                    <select 
+                     {...register("tipoconsulta")}
+                     className="w-full h-[50px] rounded-[8px] border-black border p-[16px] pr-[48px] appearance-none"
+                     defaultValue=""
+                     >
+                        <option value="" disabled hidden>Selecione</option>
+                        <option value="primeiraconsulta"> Primeira Consulta</option>
+                        <option value="retorno"> Retorno</option>
+                        <option value="checkup"> Check-up</option>
+                        <option value="vacinacao"> Vacinação</option>
+                     </select>
+                     <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none">
+                        <Image src={arrow_down} alt="" width={16} height={16} />
+                     </div>
+                </div>
             </div>
 
             <div className="flex flex-col gap-2">
@@ -86,21 +91,31 @@ export default function ModalNovaConsulta({isOpen, onClose}: ModalProps) {
 
             <div className="flex flex-col gap-2">
                 <label className="font-bold text-[#1C1C1C]">Data do atendimento</label>
-                <input 
-                 type="date"
-                 {...register("dataatendimento")}
-                 placeholder="dd/mm/aa"
-                 className="w-full h-[50px] rounded-[8px] border-black border p-[16px]"
-                 ></input>
+                <div className="relative">
+                    <input 
+                     type="date"
+                     {...register("dataatendimento")}
+                     placeholder="dd/mm/aa"
+                     className="w-full h-[50px] rounded-[8px] border-black border p-[16px] pr-[48px] [&::-webkit-calendar-picker-indicator]:opacity-0"
+                     ></input>
+                     <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none">
+                        <Image src={calendar} alt="" width={20} height={20} />
+                     </div>
+                </div>
             </div>
 
             <div className="flex flex-col gap-2">
                 <label className="font-bold text-[#1C1C1C]">Horário do atendimento</label>
-                <input 
-                 type="time"
-                 {...register("horarioatendimento")}
-                 className="w-full h-[50px] rounded-[8px] border-black border p-[16px]"
-                 ></input>
+                <div className="relative">
+                    <input 
+                     type="time"
+                     {...register("horarioatendimento")}
+                     className="w-full h-[50px] rounded-[8px] border-black border p-[16px] pr-[48px] [&::-webkit-calendar-picker-indicator]:opacity-0"
+                     ></input>
+                     <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none">
+                        <Image src={alarm} alt="" width={20} height={20} />
+                     </div>
+                </div>
             </div>
 
             <div className="md:col-span-2 flex justify-center">
