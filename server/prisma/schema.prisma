@@ -24,7 +24,7 @@ enum ConsultType {
 }
 
 model Patient {
-  id          Int        @id
+  id          Int        @id @default(autoincrement())
   name        String
   tutor       String
   age         Int?
