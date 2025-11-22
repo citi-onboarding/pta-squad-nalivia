@@ -32,11 +32,11 @@ export default function PetFilter({ onSelect }: PetFilterProps) {
         }
        
         setSheepColor(PrevColor => (PrevColor === '#FFFFFF' ? '#D9D9D9' : '#FFFFFF'))
-        setCatColor(PrevColor => (PrevColor === '#FFFFFF' ? '#FFFFFF' : '#FFFFFF'))
-        setPigColor(PrevColor => (PrevColor === '#FFFFFF' ? '#FFFFFF' : '#FFFFFF'))
-        setCowColor(PrevColor => (PrevColor === '#FFFFFF' ? '#FFFFFF' : '#FFFFFF'))
-        setHorseColor(PrevColor => (PrevColor === '#FFFFFF' ? '#FFFFFF' : '#FFFFFF'))
-        setDogColor(PrevColor => (PrevColor === '#FFFFFF' ? '#FFFFFF' : '#FFFFFF'))
+        setCatColor('#FFFFFF')
+        setPigColor('#FFFFFF')
+        setCowColor('#FFFFFF')
+        setHorseColor('#FFFFFF')
+        setDogColor('#FFFFFF')
     }
 
     const handleClickCat = () => {
@@ -48,11 +48,11 @@ export default function PetFilter({ onSelect }: PetFilterProps) {
         }
        
         setCatColor(PrevColor => (PrevColor === '#FFFFFF' ? '#D9D9D9' : '#FFFFFF'))
-        setSheepColor(PrevColor => (PrevColor === '#FFFFFF' ? '#FFFFFF' : '#FFFFFF'))
-        setPigColor(PrevColor => (PrevColor === '#FFFFFF' ? '#FFFFFF' : '#FFFFFF'))
-        setCowColor(PrevColor => (PrevColor === '#FFFFFF' ? '#FFFFFF' : '#FFFFFF'))
-        setHorseColor(PrevColor => (PrevColor === '#FFFFFF' ? '#FFFFFF' : '#FFFFFF'))
-        setDogColor(PrevColor => (PrevColor === '#FFFFFF' ? '#FFFFFF' : '#FFFFFF'))
+        setSheepColor('#FFFFFF')
+        setPigColor('#FFFFFF')
+        setCowColor('#FFFFFF')
+        setHorseColor('#FFFFFF')
+        setDogColor('#FFFFFF')
     }
 
     const handleClickPig = () => {
@@ -64,11 +64,11 @@ export default function PetFilter({ onSelect }: PetFilterProps) {
         }
        
         setPigColor(PrevColor => (PrevColor === '#FFFFFF' ? '#D9D9D9' : '#FFFFFF'))
-        setCatColor(PrevColor => (PrevColor === '#FFFFFF' ? '#FFFFFF' : '#FFFFFF'))
-        setSheepColor(PrevColor => (PrevColor === '#FFFFFF' ? '#FFFFFF' : '#FFFFFF'))
-        setCowColor(PrevColor => (PrevColor === '#FFFFFF' ? '#FFFFFF' : '#FFFFFF'))
-        setHorseColor(PrevColor => (PrevColor === '#FFFFFF' ? '#FFFFFF' : '#FFFFFF'))
-        setDogColor(PrevColor => (PrevColor === '#FFFFFF' ? '#FFFFFF' : '#FFFFFF'))
+        setCatColor('#FFFFFF')
+        setSheepColor('#FFFFFF')
+        setCowColor('#FFFFFF')
+        setHorseColor('#FFFFFF')
+        setDogColor('#FFFFFF')
     }
 
     const handleClickCow = () => {
@@ -80,11 +80,11 @@ export default function PetFilter({ onSelect }: PetFilterProps) {
         }
        
         setCowColor(PrevColor => (PrevColor === '#FFFFFF' ? '#D9D9D9' : '#FFFFFF'))
-        setCatColor(PrevColor => (PrevColor === '#FFFFFF' ? '#FFFFFF' : '#FFFFFF'))
-        setPigColor(PrevColor => (PrevColor === '#FFFFFF' ? '#FFFFFF' : '#FFFFFF'))
-        setSheepColor(PrevColor => (PrevColor === '#FFFFFF' ? '#FFFFFF' : '#FFFFFF'))
-        setHorseColor(PrevColor => (PrevColor === '#FFFFFF' ? '#FFFFFF' : '#FFFFFF'))
-        setDogColor(PrevColor => (PrevColor === '#FFFFFF' ? '#FFFFFF' : '#FFFFFF'))
+        setCatColor('#FFFFFF')
+        setPigColor('#FFFFFF')
+        setSheepColor('#FFFFFF')
+        setHorseColor('#FFFFFF')
+        setDogColor('#FFFFFF')
     }
 
     const handleClickHorse = () => {
@@ -96,11 +96,11 @@ export default function PetFilter({ onSelect }: PetFilterProps) {
         }
        
         setHorseColor(PrevColor => (PrevColor === '#FFFFFF' ? '#D9D9D9' : '#FFFFFF'))
-        setCatColor(PrevColor => (PrevColor === '#FFFFFF' ? '#FFFFFF' : '#FFFFFF'))
-        setPigColor(PrevColor => (PrevColor === '#FFFFFF' ? '#FFFFFF' : '#FFFFFF'))
-        setCowColor(PrevColor => (PrevColor === '#FFFFFF' ? '#FFFFFF' : '#FFFFFF'))
-        setSheepColor(PrevColor => (PrevColor === '#FFFFFF' ? '#FFFFFF' : '#FFFFFF'))
-        setDogColor(PrevColor => (PrevColor === '#FFFFFF' ? '#FFFFFF' : '#FFFFFF'))
+        setCatColor('#FFFFFF')
+        setPigColor('#FFFFFF')
+        setCowColor('#FFFFFF')
+        setSheepColor('#FFFFFF')
+        setDogColor('#FFFFFF')
     }
 
     const handleClickDog = () => {
@@ -112,11 +112,11 @@ export default function PetFilter({ onSelect }: PetFilterProps) {
         }
        
         setDogColor(PrevColor => (PrevColor === '#FFFFFF' ? '#D9D9D9' : '#FFFFFF'))
-        setCatColor(PrevColor => (PrevColor === '#FFFFFF' ? '#FFFFFF' : '#FFFFFF'))
-        setPigColor(PrevColor => (PrevColor === '#FFFFFF' ? '#FFFFFF' : '#FFFFFF'))
-        setCowColor(PrevColor => (PrevColor === '#FFFFFF' ? '#FFFFFF' : '#FFFFFF'))
-        setHorseColor(PrevColor => (PrevColor === '#FFFFFF' ? '#FFFFFF' : '#FFFFFF'))
-        setSheepColor(PrevColor => (PrevColor === '#FFFFFF' ? '#FFFFFF' : '#FFFFFF'))
+        setCatColor('#FFFFFF')
+        setPigColor('#FFFFFF')
+        setCowColor('#FFFFFF')
+        setHorseColor('#FFFFFF')
+        setSheepColor('#FFFFFF')
     }
 
 
