@@ -57,17 +57,17 @@ export default function DataFilter({ onSelect }: DataFilterProps) {
 
         <View className='w-[252px] h-[70px] bg-[#FFFFFF] rounded-[32px] flex-row items-center justify-center'>   
 
-            <View className='w-[204px] h-[20px] flex-row justify-between items-center'>
+            <View className='w-[254px] h-[20px] flex-row justify-between items-center'>
                 
-                <Pressable onPress={handleClickSun} className='w-[50px] h-[50px] items-center justify-center rounded-full ' style={{ backgroundColor: SunColor }}> 
+                <Pressable onPress={handleClickSun} className='w-[70px] h-[70px] items-center justify-center rounded-full ' style={{ backgroundColor: SunColor }}> 
                     <Sun width={30} height={30} color="black" />
                 </Pressable>
 
-                <Pressable onPress={handleClickCloud} className='w-[50px] h-[50px] items-center justify-center rounded-full ' style={{ backgroundColor: CloudColor }}> 
+                <Pressable onPress={handleClickCloud} className='w-[70px] h-[70px] items-center justify-center rounded-full ' style={{ backgroundColor: CloudColor }}> 
                     <Cloud width={30} height={30} color="black" />
                 </Pressable>
 
-                <Pressable onPress={handleClickMoon} className='w-[50px] h-[50px] items-center justify-center rounded-full ' style={{ backgroundColor: MoonColor }}> 
+                <Pressable onPress={handleClickMoon} className='w-[70px] h-[70px] items-center justify-center rounded-full ' style={{ backgroundColor: MoonColor }}> 
                     <Moon width={30} height={30} color="black" />
                 </Pressable>
                 
