@@ -71,8 +71,8 @@ export const PetCard = ({
       <div className="flex flex-col justify-center flex-grow ml-6"> 
         
         {/* LINHA PRINCIPAL: PetName / ownerName / Doctor */}
-        <div className="flex items-center"> 
-          
+        <div className="flex items-center gap-2"> 
+
           {/* Nomes (Pet / Owner) */}
           <div className="flex items-center">
             <span className="text-[14px] font-bold text-gray-900">
@@ -87,7 +87,7 @@ export const PetCard = ({
             </span>
           </div>
 
-          <div className="ml-6"> 
+          <div className="ml-2"> 
             <span className="text-[14px] font-medium weight-400">
               {doctor}
             </span>

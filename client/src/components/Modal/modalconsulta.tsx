@@ -1,6 +1,6 @@
 "use client"
 import { useForm } from "react-hook-form";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/Button";
 import Image from "next/image";
 import {close, LogoPet, arrow_down, calendar, alarm} from "@/assets";
 
@@ -64,7 +64,7 @@ export default function ModalNovaConsulta({isOpen, onClose}: ModalProps) {
                 <div className="relative">
                     <select 
                      {...register("tipoconsulta")}
-                     className="w-full h-[50px] rounded-[8px] border-black border p-[16px] pr-[48px] appearance-none"
+                     className="w-full h-[50px] rounded-[8px] border-black border py-3 px-4 pr-[48px] appearance-none leading-normal"
                      defaultValue=""
                      >
                         <option value="" disabled hidden>Selecione</option>
@@ -85,7 +85,7 @@ export default function ModalNovaConsulta({isOpen, onClose}: ModalProps) {
                  type="text"
                  {...register("medico")}
                  placeholder="Digite aqui..."
-                 className="w-full h-[50px] rounded-[8px] border-black border p-[16px]"
+                 className="w-full h-[50px] rounded-[8px] border-black border py-3 px-4"
                  ></input>
             </div>
 
@@ -96,7 +96,7 @@ export default function ModalNovaConsulta({isOpen, onClose}: ModalProps) {
                      type="date"
                      {...register("dataatendimento")}
                      placeholder="dd/mm/aa"
-                     className="w-full h-[50px] rounded-[8px] border-black border p-[16px] pr-[48px] [&::-webkit-calendar-picker-indicator]:opacity-0"
+                     className="w-full h-[50px] rounded-[8px] border-black border py-3 px-4 pr-[48px] [&::-webkit-calendar-picker-indicator]:opacity-0"
                      ></input>
                      <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none">
                         <Image src={calendar} alt="" width={20} height={20} />
@@ -110,7 +110,7 @@ export default function ModalNovaConsulta({isOpen, onClose}: ModalProps) {
                     <input 
                      type="time"
                      {...register("horarioatendimento")}
-                     className="w-full h-[50px] rounded-[8px] border-black border p-[16px] pr-[48px] [&::-webkit-calendar-picker-indicator]:opacity-0"
+                     className="w-full h-[50px] rounded-[8px] border-black border py-3 px-4 pr-[48px] [&::-webkit-calendar-picker-indicator]:opacity-0"
                      ></input>
                      <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none">
                         <Image src={alarm} alt="" width={20} height={20} />

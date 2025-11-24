@@ -1,6 +1,6 @@
 "use client"
 import { useForm } from "react-hook-form";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/Button";
 import Image from "next/image";
 import {close, LogoPet} from "@/assets";
 
