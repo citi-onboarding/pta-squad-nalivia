@@ -1,25 +1,24 @@
 // Pets
-import cat from "./Pets/cat.png"
-import cow from "./Pets/cow.png"
+import cat from "./Pets/cat.svg"
+import cow from "./Pets/cow.svg"
 import dog from "./Pets/dog.png"
-import horse from "./Pets/horse.png"
-import pig from "./Pets/pig.png"
-import sheep from "./Pets/sheep.png"
+import horse from "./Pets/horse.svg"
+import pig from "./Pets/pig.svg"
+import sheep from "./Pets/sheep.svg"
 
 // Icons
-import add from "./Icons/add.png"
-import alarm from "./Icons/alarm.png"
-import arrow from "./Icons/arrow.png"
-import arrow_back from "./Icons/arrow_back.png"
-import arrow_down from "./Icons/arrow_down.png"
-import calendar from "./Icons/calendar.png"
-import check from "./Icons/check.png"
-import close from "./Icons/close.png"
+import add from "./Icons/add.svg"
+import alarm from "./Icons/alarm.svg"
+import arrow from "./Icons/arrow.svg"
+import arrow_back from "./Icons/arrow_back.svg"
+import arrow_down from "./Icons/arrow_down.svg"
+import calendar from "./Icons/calendar.svg"
+import check from "./Icons/check.svg"
+import close from "./Icons/close.svg"
+import favorite from "./Icons/favorite.svg"
 
 // Logos and others
-import LogoPet from "./Logos/LogoPet.png"
-import favorite from "./Logos/favorite.png"
-import Logo from "./Logos/Logo.png"
-import LogoPurple from "./Logos/LogoPurple.png"
+import LogoPet from "./Logos/LogoPet.svg"
+import LogoCITi from "./Logos/LogoCITi.svg"
 
-export { LogoPet, favorite, Logo, LogoPurple, cat, cow, dog, horse, pig, sheep, alarm, arrow, arrow_down, arrow_back, check, close, calendar, add };
+export { LogoCITi, LogoPet, favorite, cat, cow, dog, horse, pig, sheep, alarm, arrow, arrow_down, arrow_back, check, close, calendar, add };
