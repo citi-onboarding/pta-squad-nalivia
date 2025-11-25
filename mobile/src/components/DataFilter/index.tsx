@@ -8,70 +8,53 @@ interface DataFilterProps {
     onSelect: (filter: string) => void;
 }
 
+const data_filters = [
+    {
+        id: 'sun',
+        icon: Sun,
+    },
+    {
+        id: 'cloud',
+        icon: Cloud,
+    },
+    {
+        id: 'moon',
+        icon: Moon,
+    },
+];
+
 export default function DataFilter({ onSelect }: DataFilterProps) {
     
-    const [SunColor, setSunColor] = useState("#FFFFFF")
-    const [CloudColor, setCloudColor] = useState("#FFFFFF")
-    const [MoonColor, setMoonColor] = useState("#FFFFFF")
 
-    const handleClickSun = () => {
+    const [selectedFilter, setSelectedFilter] = useState<string>('');
 
-        if (SunColor === '#FFFFFF') {
-            onSelect('sun');
-        } else {
+    const handleSelectFilter = (filter: string) => {
+        if (selectedFilter === filter) {
+            setSelectedFilter('');
             onSelect('');
-        }
-       
-        setSunColor(PrevColor => (PrevColor === '#FFFFFF' ? '#D9D9D9' : '#FFFFFF'))
-        setCloudColor('#FFFFFF')
-        setMoonColor('#FFFFFF')
-    }
-
-    const handleClickCloud = () => {
-
-        if (CloudColor === '#FFFFFF') {
-            onSelect('cloud');
         } else {
-            onSelect('');
+            setSelectedFilter(filter);
+            onSelect(filter);
         }
-       
-        setCloudColor(PrevColor => (PrevColor === '#FFFFFF' ? '#D9D9D9' : '#FFFFFF'))
-        setSunColor('#FFFFFF')
-        setMoonColor('#FFFFFF')
-    }
+    };
 
-    const handleClickMoon = () => {
-
-        if (MoonColor === '#FFFFFF') {
-            onSelect('moon');
-        } else {
-            onSelect('');
-        }
-       
-        setMoonColor(PrevColor => (PrevColor === '#FFFFFF' ? '#D9D9D9' : '#FFFFFF'))
-        setSunColor(PrevColor => (PrevColor === '#FFFFFF' ? '#FFFFFF' : '#FFFFFF'))
-        setCloudColor(PrevColor => (PrevColor === '#FFFFFF' ? '#FFFFFF' : '#FFFFFF'))
-    }
+   
 
     return (
 
-        <View className='w-[252px] h-[70px] bg-[#FFFFFF] rounded-[32px] flex-row items-center justify-center'>   
+        <View className='w-[252px] h-[70px] bg-[#FFFFFF] rounded-[34px] flex-row items-center justify-center'>   
 
             <View className='w-[254px] h-[20px] flex-row justify-between items-center'>
-                
-                <Pressable onPress={handleClickSun} className='w-[70px] h-[70px] items-center justify-center rounded-full ' style={{ backgroundColor: SunColor }}> 
-                    <Sun width={30} height={30} color="black" />
-                </Pressable>
+                {data_filters.map((filter) => (
+                    <Pressable key={filter.id}
+                    className='w-[70px] h-[70px] items-center justify-center rounded-full'
+                    style={{ backgroundColor: selectedFilter === filter.id ? '#D9D9D9' : '#FFFFFF' }}
+                    onPress={() => handleSelectFilter(filter.id)}
+                    >
+                        <filter.icon width={30} height={30} color="black" />
+                    </Pressable>
 
-                <Pressable onPress={handleClickCloud} className='w-[70px] h-[70px] items-center justify-center rounded-full ' style={{ backgroundColor: CloudColor }}> 
-                    <Cloud width={30} height={30} color="black" />
-                </Pressable>
-
-                <Pressable onPress={handleClickMoon} className='w-[70px] h-[70px] items-center justify-center rounded-full ' style={{ backgroundColor: MoonColor }}> 
-                    <Moon width={30} height={30} color="black" />
-                </Pressable>
-                
-
+                ))}
             </View>
 
         </View>
