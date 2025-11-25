@@ -19,6 +19,6 @@ import favorite from "./Icons/favorite.svg"
 
 // Logos and others
 import LogoPet from "./Logos/LogoPet.svg"
-import LogoCITi from "./Logos/LogoCITi.svg"
+import LogoPurple from "./Logos/LogoPurple.svg"
 
-export { LogoCITi, LogoPet, favorite, cat, cow, dog, horse, pig, sheep, alarm, arrow, arrow_down, arrow_back, check, close, calendar, add };
+export { LogoPurple, LogoPet, favorite, cat, cow, dog, horse, pig, sheep, alarm, arrow, arrow_down, arrow_back, check, close, calendar, add };
