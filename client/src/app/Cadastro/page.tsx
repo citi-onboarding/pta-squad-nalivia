@@ -29,9 +29,13 @@ export default function Cadastro() {
 
     const [isModalOpen, setIsModalOpen] = useState(false);
 
+    const today = new Date();
+    today.setMinutes(today.getMinutes() - today.getTimezoneOffset());
+    const dataMinima = today.toISOString().split("T")[0];
+
     function handleCadastro(event: FormEvent) {
         event.preventDefault(); 
-
+        
 
         if (!name || !age || !tutor || !specie || !consult || !doctor || !date || !time) {
         alert("Por favor, preencha todos os campos antes de finalizar!");
@@ -51,7 +55,7 @@ export default function Cadastro() {
         };
 
         console.log("Dados prontos para envio:", dadosPet);
-        alert("Olhe o console (F12) para ver os dados!");
+       
 
         setIsModalOpen(true);
     }
@@ -189,6 +193,7 @@ export default function Cadastro() {
                             </span>
                             <input 
                             type="date"
+                            min={dataMinima}
                             placeholder="dd/mm/aa"
                             className="border border-black p-4 rounded-[8px] focus:outline-none w-[390px] h-[50px]"
                             value={date}
