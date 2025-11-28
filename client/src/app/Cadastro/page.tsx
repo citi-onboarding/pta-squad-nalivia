@@ -4,6 +4,7 @@ import { useState, FormEvent } from 'react';
 import {Button} from "../../components/Button";
 import { dog, cat, cow, horse, pig, sheep, arrow_back} from "@/assets"
 import ModalCadastro from "../../components/Modal/modalcadastro";
+import Link from "next/link";
 
 const animalImages: Record<string, string> = {
     ovelha: sheep.src,
@@ -66,9 +67,9 @@ export default function Cadastro() {
             <div className="px-[194px] mt-[48px]">
 
                 <div className="flex items-center gap-4">
-                    <div className="">
-                        <img src={arrow_back.src} alt="arrow" className="w-[32px] h-[32px]" />
-                    </div>
+                    <Link href="/Atendimento" className="p-1 cursor-pointer hover:opacity-80 transition-opacity" aria-label="Voltar para a tela de Atendimento">
+                         <img src={arrow_back.src} alt="arrow" className="w-[32px] h-[32px]" />
+                    </Link>
                     <div>
                         <span className="text-[48px] font-bold font-black-700 ">
                             Cadastro
