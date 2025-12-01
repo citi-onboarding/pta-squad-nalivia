@@ -13,7 +13,7 @@ export default function Header() {
     const path = usePathname()
 
     return (
-        <div className='w-full h-auto bg-#F0F0F0 font-(family-name:--SF Pro Display) text-#7D1AD7 flex flex-row justify-between text-base border-b border-[#D9D9D9] px-5 py-auto'> {/* Header geral */}
+        <div className='w-full h-auto bg-#F0F0F0 font-(family-name:--SF Pro Display) text-[#7D1AD7] flex flex-row justify-between text-base border-b border-[#D9D9D9] px-5 py-auto'> {/* Header geral */}
             
             {/* Logo Pet */}
             <div className='w-[189px] h-auto ml-12 mt-5 mb-5'> 
