@@ -1,4 +1,5 @@
 import React from 'react';
+import { useRouter } from "next/navigation";
 
 import { dog, cat, cow, horse, pig, sheep, alarm} from "@/assets"
 
@@ -44,13 +45,19 @@ export const PetCard = ({
   const consultationDate = new Date(today.getFullYear(), month - 1, day);
   const isExpired = consultationDate < today;
   const cardColor = isExpired ? "#F0F0F0" : appointmentColor[appointment];
+  const router = useRouter();
+  
+  const handleClick = () => {
+    router.push("/a");
+  };
 
   return (
     <div
+      onClick={handleClick}
       style={{
         backgroundColor: cardColor,
       }}
-      className="flex w-[494.67px] bg-[#BFB5FF] rounded-[16px] items-center  px-6  justify-between h-min-[135px] h-[fit]"> 
+      className="flex w-[494.67px] bg-[#BFB5FF] rounded-[16px] items-center px-6 justify-between h-min-[135px] h-[fit] cursor-pointer hover:opacity-90 transition-opacity"> 
 
       {/*BOX CINZA (lado esquerdo) */}
       <div className="

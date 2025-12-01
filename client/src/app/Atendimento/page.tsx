@@ -6,9 +6,9 @@ import { useState } from "react"
 import { PetCard } from "@/components/PetCard"
 import { add } from "@/assets"
 import Image from "next/image"
+import Link from "next/link"
 import React from "react"
 import { Button } from "@/components/Button"
-import ModalNovaConsulta from "../../components/Modal/modalconsulta"
 
 interface PetCardProps {
     imageSrc?: string;
@@ -119,7 +119,6 @@ export default function Atendimento() {
     const [modo, setModo] = useState<"agendamento" | "historico">("agendamento");
     const [startDate, setStartDate] = useState('');
     const [endDate, setEndDate] = useState('');
-    const [isModalOpen, setIsModalOpen] = useState(false);
 
     function isHistorico(cardDate: string) {
         const today = new Date(); 
@@ -188,23 +187,16 @@ export default function Atendimento() {
 
         {/* New register button */}
         <div className='mr-[10.10%] mt-[185px] flex flex-row justify-end'>
-            <Button 
-                variant="default" 
-                onClick={() => setIsModalOpen(true)}
-            >
-                <Image src={add} alt="Add Icon" width={20} height={20} />
-                Nova Consulta
+            <Button asChild variant="default">
+                <Link href='/Cadastro'>
+                    <Image src={add} alt="Add Icon" width={20} height={20} />
+                    Nova Consulta
+                </Link>
             </Button>
         </div>
 
         {/* Footer */}
         <div className='h-[76px] bg-[#FFFFFF]'></div>
-
-        {/* Modal Nova Consulta */}
-        <ModalNovaConsulta 
-            isOpen={isModalOpen} 
-            onClose={() => setIsModalOpen(false)} 
-        />
         </>
     )
 }
