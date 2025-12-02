@@ -9,110 +9,7 @@ import Image from "next/image"
 import Link from "next/link"
 import React from "react"
 import { Button } from "@/components/Button"
-
-interface PetCardProps {
-    imageSrc?: string;
-    date: string;
-    time: string;
-    doctor: string;
-    petName: string;
-    ownerName: string;
-    appointment: string;
-    petType: string;
-}
-
-export const PetCardMock: PetCardProps[]= [
-    {
-        date: "21/01",
-        time: "14:30",
-        doctor: "Ana Bezerra",
-        petName: "Luna",
-        ownerName: "Mariana Torres",
-        petType: "gato",
-        appointment: "Retorno"
-    },
-    {
-        date: "17/11",
-        time: "09:15",
-        doctor: "Henrique Rocha",
-        petName: "Thor",
-        ownerName: "Rafael Lima",
-        petType: "cachorro",
-        appointment: "Primeira consulta"
-    },
-    {
-        date: "23/12",
-        time: "16:00",
-        doctor: "Sofia Martins",
-        petName: "Mimi",
-        ownerName: "João Nogueira",
-        petType: "gato",
-        appointment: "Check-up"
-      },
-      {
-        date: "24/09",
-        time: "10:45",
-        doctor: "Paulo Mendes",
-        petName: "Bela",
-        ownerName: "Fazenda Esperança",
-        petType: "ovelha",
-        appointment: "Vacinação"
-      },
-      {
-        date: "04/06",
-        time: "13:20",
-        doctor: "Júlia Freitas",
-        petName: "Relâmpago",
-        ownerName: "Haras Ouro",
-        petType: "cavalo",
-        appointment: "Check-up"
-      },
-      {
-        date: "12/07",
-        time: "08:50",
-        doctor: "Marcelo Azevedo",
-        petName: "Mimosa",
-        ownerName: "Sitio Vista",
-        petType: "vaca",
-        appointment: "Vacinação"
-      },
-      {
-        date: "14/12",
-        time: "11:00",
-        doctor: "Camila Arruda",
-        petName: "Tutu",
-        ownerName: "Pedro Duarte",
-        petType: "pig",
-        appointment: "Primeira consulta"
-      },
-      {
-        date: "20/11",
-        time: "15:15",
-        doctor: "Lucas Ferraz",
-        petName: "Amora",
-        ownerName: "Bianca Cavalcanti",
-        petType: "gato",
-        appointment: "Vacinação"
-      },
-      {
-        date: "30/04",
-        time: "17:40",
-        doctor: "Helena Reis",
-        petName: "Bob",
-        ownerName: "Carlos Silva",
-        petType: "cachorro",
-        appointment: "Vacinação"
-      },
-      {
-        date: "16/12",
-        time: "12:30",
-        doctor: "André Santos",
-        petName: "Tornado",
-        ownerName: "Haras Primavera",
-        petType: "pig",
-        appointment: "Retorno"
-      }
-    ]; 
+import { PetCardMock } from "@/data/petCards";
 
 export default function Atendimento() {
     const [search, setSearch] = useState('');
@@ -153,11 +50,11 @@ export default function Atendimento() {
     return (
         <>
         <Header />
-        <div className='w-[19%] h-auto mt-12 mb-8 ml-[10.10%] text-[48px] font-bold'>
+        <div className='w-[19%] h-auto mt-12 mb-8 ml-[12.6%] text-[48px] font-bold'>
             <p>Atendimento</p>
         </div>
         <SearchBar onSearch={setSearch}/>
-        <div className='flex flex-row justify-between mt-[40px] ml-[10.10%] mr-[10.10%] text-[16px]'>
+        <div className='flex flex-row justify-between mt-[40px] ml-[12.6%] mr-[10.10%] text-[16px]'>
             {/* Filter by status */}
             <div className='w-[243px] h-[58px] justify-center items-center gap-4 flex flex-row bg-[#F0F0F0] rounded-xl'>
                 <div onClick={() => setModo('agendamento')} 
@@ -181,7 +78,7 @@ export default function Atendimento() {
             </div>
         </div>
 
-        <div className='grid grid-cols-[repeat(auto-fit,minmax(494.67px,1fr))] gap-6 justify-items-center mr-[8.2%] ml-[6.8%] mt-8'>
+        <div className='grid grid-cols-[repeat(auto-fit,minmax(494.67px,1fr))] gap-6 justify-items-center mr-[6.2%] ml-[8.9%] mt-8'>
             {filter.map((card, index) => (<PetCard key={index} {...card}></PetCard>))}
         </div>
 
