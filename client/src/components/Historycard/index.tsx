@@ -1,26 +1,61 @@
+"use client"
+
+import { useRouter } from 'next/navigation';
 import React from 'react';
-import {arrow} from "@/assets"
+import { arrow } from "@/assets"
 
 interface HistoryCardProps {
   date: string;
   time: string;
   doctor: string;
+  petName: string;
+  ownerName: string;
   appointment: string;
+  petType: string;
 }
+
+const appointmentColor: Record<string, string> = {
+  "Primeira Consulta": "#BFB5FF",
+  "Retorno": "#FF641999",
+  "Check-up": "#9CFF95",
+  "Vacinação": "#AAE1FF",
+};
 
 export const HistoryCard = ({
   date,
   time,
   doctor,
+  petName,
+  ownerName,
   appointment,
+  petType,
 }: HistoryCardProps) => {
 
+  const today = new Date();
+  const [day, month] = date.split("/").map(Number);
+  const consultationDate = new Date(today.getFullYear(), month - 1, day);
+  const isExpired = consultationDate < today;
+  const cardColor = isExpired ? "#F0F0F0" : appointmentColor[appointment];
+  const router = useRouter();
+
+  const handleClick = () => {
+    const params = new URLSearchParams({
+    date,
+    time,
+    doctor,
+    petName,
+    ownerName,
+    appointment,
+    petType,
+    cardColor
+    });
+
+    router.push(`/Detalhes?${params.toString()}`);
+  }
+
   return (
-    <div
-      style={{
-        backgroundColor: "#F0F0F0",
-      }}
-      className="flex h-[82px] w-[501px] rounded-[16px] py-4 px-6 items-center justify-between "> 
+    <div onClick={handleClick} style={{backgroundColor: "#F0F0F0",}}
+      className="flex h-[82px] w-[501px] rounded-[16px] py-4 px-6 items-center justify-between cursor-pointer hover:opacity-90 transition-opacity"> 
 
       <div className="
         bg-[#FFFFFFCC] 
@@ -48,9 +83,8 @@ export const HistoryCard = ({
       </div>
 
       <div className="flex justify-center">
-        <img src={arrow.src} alt="arrow" className="w-[24px] h-[24px]" />
+          <img src={arrow.src} alt="arrow" className="w-[24px] h-[24px]" />      
       </div>
-
 
     </div>
   );

@@ -48,7 +48,18 @@ export const PetCard = ({
   const router = useRouter();
   
   const handleClick = () => {
-    router.push("/a");
+    const params = new URLSearchParams({
+      date,
+      time,
+      doctor,
+      petName,
+      ownerName,
+      appointment,
+      petType,
+      cardColor
+    });
+  
+    router.push(`/Detalhes?${params.toString()}`);
   };
 
   return (
