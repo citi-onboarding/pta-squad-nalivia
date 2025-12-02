@@ -57,7 +57,7 @@ export const PetCard = ({
       style={{
         backgroundColor: cardColor,
       }}
-      className="flex w-[494.67px] bg-[#BFB5FF] rounded-[16px] items-center px-6 justify-between h-min-[135px] h-[fit] cursor-pointer hover:opacity-90 transition-opacity"> 
+      className="max-w-[494.67px] flex w-full bg-[#BFB5FF] rounded-[16px] items-center px-6 py-4 justify-between min-h-[135px] cursor-pointer hover:opacity-90 transition-opacity overflow-hidden"> 
 
       {/*BOX CINZA (lado esquerdo) */}
       <div className="
@@ -75,27 +75,27 @@ export const PetCard = ({
       </div>
 
       {/* CONTEÚDO CENTRAL E DR. */}
-      <div className="flex flex-col justify-center flex-grow ml-6"> 
+      <div className="flex flex-col justify-center flex-grow ml-6 min-w-0"> 
         
         {/* LINHA PRINCIPAL: PetName / ownerName / Doctor */}
-        <div className="flex items-center gap-2"> 
+        <div className="flex items-center gap-2 flex-wrap"> 
 
           {/* Nomes (Pet / Owner) */}
           <div className="flex items-center">
-            <span className="text-[14px] font-bold text-gray-900">
+            <span className="text-[12px] md:text-[14px] font-bold text-gray-900">
               {petName}
             </span>
 
-            <span className="text-gray-500 text-[14px] mx-1">/</span>
+            <span className="text-gray-500 text-[12px] md:text-[14px] mx-1">/</span>
 
             {/* Owner */}
-            <span className="font-medium text-black-600 text-[14px]">
+            <span className="font-medium text-black-600 text-[12px] md:text-[14px]">
               {ownerName}
             </span>
           </div>
 
-          <div className="ml-2"> 
-            <span className="text-[14px] font-medium weight-400">
+          <div> 
+            <span className="text-[12px] md:text-[14px] font-medium weight-400">
               {doctor}
             </span>
           </div>
@@ -104,12 +104,12 @@ export const PetCard = ({
 
 
       {/* CONTEÚDO DIREITO (Imagem e Tipo de Consulta) */}
-      <div className="flex flex-col items-center justify-center ml-6">
+      <div className="flex flex-col items-center justify-center ml-4 flex-shrink-0">
         {/* imagem pet */}
         <div>
           <img 
           src = {animalImages[petType]}
-          className="w-[69px] h-[70px] mt-[16px]"
+          className="w-[60px] h-[60px]"
           />
         </div>
 
@@ -121,11 +121,11 @@ export const PetCard = ({
         flex flex-col justify-center 
               
         py-1   
-        w-[101px]
+        w-[90px]
         h-fit
-        mt-[8px] mb-[16px]
+        mt-[4px]
         ">
-          <span className='text-[12px] flex items-center justify-center '>
+          <span className='text-[11px] flex items-center justify-center '>
           {appointment}
           </span>
         </div>
