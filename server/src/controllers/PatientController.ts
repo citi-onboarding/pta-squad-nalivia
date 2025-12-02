@@ -18,9 +18,10 @@ class UserController implements Crud {
     if (isAnyUndefined) return response.status(400).send();
 
     const newPatient = { name, tutor, age, specie };
-    const { httpStatus, message } = await this.citi.insertIntoDatabase(newPatient);
+    const { httpStatus, message, values } = await this.citi.insertIntoDatabase(newPatient);
 
-    return response.status(httpStatus).send({ message });
+    return response.status(httpStatus).send({ message, values });
+
   };
 
   get = async (request: Request, response: Response) => {
