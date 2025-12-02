@@ -16,7 +16,7 @@ export default function SearchBar({ onSearch }: SearchBarProps) {
     }
 
     return (
-        <div className='w-[34.375%] h-auto mt-8 ml-[10.10%] mr-[55.52%] flex flex-col text-[24px] gap-6'>
+        <div className='w-[34.375%] h-auto mt-8 ml-[12.6%] mr-[55.52%] flex flex-col text-[24px] gap-6'>
             <p>Qual é o médico?</p>
             <div className='flex flex-row gap-6'>
                 <input type='search' value={search} onChange={(e) => setSearch(e.target.value)} onKeyDown={(e) => {if (e.key === "Enter") {handleSearch();}}} placeholder='Pesquise aqui...' className='w-full h-[50px] rounded-[8px] p-[16px] border border-black text-[16px] outline-none'/>
