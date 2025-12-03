@@ -9,110 +9,7 @@ import Image from "next/image"
 import Link from "next/link"
 import React from "react"
 import { Button } from "@/components/Button"
-
-interface PetCardProps {
-    imageSrc?: string;
-    date: string;
-    time: string;
-    doctor: string;
-    petName: string;
-    ownerName: string;
-    appointment: string;
-    petType: string;
-}
-
-const PetCardMock: PetCardProps[]= [
-    {
-        date: "21/01",
-        time: "14:30",
-        doctor: "Ana Bezerra",
-        petName: "Luna",
-        ownerName: "Mariana Torres",
-        petType: "gato",
-        appointment: "Retorno"
-    },
-    {
-        date: "17/11",
-        time: "09:15",
-        doctor: "Henrique Rocha",
-        petName: "Thor",
-        ownerName: "Rafael Lima",
-        petType: "cachorro",
-        appointment: "Primeira consulta"
-    },
-    {
-        date: "23/12",
-        time: "16:00",
-        doctor: "Sofia Martins",
-        petName: "Mimi",
-        ownerName: "João Nogueira",
-        petType: "gato",
-        appointment: "Check-up"
-      },
-      {
-        date: "24/09",
-        time: "10:45",
-        doctor: "Paulo Mendes",
-        petName: "Bela",
-        ownerName: "Fazenda Esperança",
-        petType: "ovelha",
-        appointment: "Vacinação"
-      },
-      {
-        date: "04/06",
-        time: "13:20",
-        doctor: "Júlia Freitas",
-        petName: "Relâmpago",
-        ownerName: "Haras Ouro",
-        petType: "cavalo",
-        appointment: "Check-up"
-      },
-      {
-        date: "12/07",
-        time: "08:50",
-        doctor: "Marcelo Azevedo",
-        petName: "Mimosa",
-        ownerName: "Sitio Vista",
-        petType: "vaca",
-        appointment: "Vacinação"
-      },
-      {
-        date: "14/12",
-        time: "11:00",
-        doctor: "Camila Arruda",
-        petName: "Tutu",
-        ownerName: "Pedro Duarte",
-        petType: "pig",
-        appointment: "Primeira consulta"
-      },
-      {
-        date: "20/11",
-        time: "15:15",
-        doctor: "Lucas Ferraz",
-        petName: "Amora",
-        ownerName: "Bianca Cavalcanti",
-        petType: "gato",
-        appointment: "Vacinação"
-      },
-      {
-        date: "30/04",
-        time: "17:40",
-        doctor: "Helena Reis",
-        petName: "Bob",
-        ownerName: "Carlos Silva",
-        petType: "cachorro",
-        appointment: "Vacinação"
-      },
-      {
-        date: "16/12",
-        time: "12:30",
-        doctor: "André Santos",
-        petName: "Tornado",
-        ownerName: "Haras Primavera",
-        petType: "pig",
-        appointment: "Retorno"
-      }
-    ]; 
+import { PetCardMock } from "@/data/petCards";
 
 export default function Atendimento() {
     const [search, setSearch] = useState('');
@@ -153,11 +50,11 @@ export default function Atendimento() {
     return (
         <>
         <Header />
-        <div className='w-[19%] h-auto mt-12 mb-8 ml-[10.10%] text-[48px] font-bold'>
+        <div className='w-[19%] h-auto mt-6 md:mt-8 lg:mt-[48px] mb-8 px-4 sm:px-8 md:px-16 lg:px-32 xl:px-[194px] text-2xl md:text-4xl lg:text-[48px] font-bold'>
             <p>Atendimento</p>
         </div>
         <SearchBar onSearch={setSearch}/>
-        <div className='flex flex-row justify-between mt-[40px] ml-[10.10%] mr-[10.10%] text-[16px]'>
+        <div className='flex flex-row justify-between mt-[40px] px-4 sm:px-8 md:px-16 lg:px-32 xl:px-[194px] text-[16px]'>
             {/* Filter by status */}
             <div className='w-[243px] h-[58px] justify-center items-center gap-4 flex flex-row bg-[#F0F0F0] rounded-xl'>
                 <div onClick={() => setModo('agendamento')} 
@@ -181,12 +78,13 @@ export default function Atendimento() {
             </div>
         </div>
 
+        <div className='grid grid-cols-[repeat(auto-fit,minmax(494.67px,1fr))] gap-6 justify-items-center px-4 sm:px-8 md:px-16 lg:px-32 xl:px-[194px] mt-8'>
         <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 mx-[10.10%] mt-8'>
             {filter.map((card, index) => (<PetCard key={index} {...card}></PetCard>))}
         </div>
 
         {/* New register button */}
-        <div className='mr-[10.10%] mt-[185px] flex flex-row justify-end'>
+        <div className='px-4 sm:px-8 md:px-16 lg:px-32 xl:px-[194px] mt-[185px] flex flex-row justify-end'>
             <Button asChild variant="default">
                 <Link href='/Cadastro'>
                     <Image src={add} alt="Add Icon" width={20} height={20} />
