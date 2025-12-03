@@ -64,31 +64,31 @@ export default function Detalhes() {
                 </div>
             </div>
 
-            <div className="w-auto h-auto flex flex-row gap-[150px] ml-[10.10%] mr-[10.10%] mt-6 ">
+            <div className="w-[79.8%] h-auto flex flex-row gap-[18.02%] ml-[10.10%] mr-[10.10%] mt-6">
                 {/* Lado esquerdo */}
-                <div>
+                <div className="w-[32.86%]">
                     <div>
                         <p className='w-[5%] h-auto text-[24px] font-bold'>Paciente</p>
                     </div>
                     {/* Informações do pet */}
-                    <div className='flex flex-row space-x-[45px] mt-8'>
-                        <Image src={cow} alt='Animal' className='w-[295px] h-[299px] mb-[60px]' />
+                    <div className='flex flex-row space-x-[2.34%] mt-8'>
+                        <Image src={petType ? animalImages[petType] : ""} alt='Animal' width={295} height={299} className='mb-[5.55%]' />
 
                         <div className='flex flex-col'>
-                            <div className='text-[24px] flex flex-col space-y-3 mt-[56px]'>
+                            <div className='text-[24px] flex flex-col space-y-3 mt-[5.18%]'>
                                 <p className='font-bold'>{petName}</p>
                                 <p>5 anos</p>
                             </div>
 
                             <div className='text-[16px] flex flex-col space-y-3 mt-auto mb-auto'>
                                 <p>{ownerName}</p>
-                                <p>Dra. {doctor}</p>
+                                <p>Dr. {doctor}</p>
                             </div>
                         </div>
                     </div>
 
                     {/* Descrição do problema */}
-                    <div className='w-[631px] space-y-3 text-[16px] mb-6'>
+                    <div className='w-full space-y-3 text-[16px] mb-6'>
                         <p className='font-bold'>Descrição do problema:</p>
                         <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries</p>
                     </div>
@@ -100,7 +100,7 @@ export default function Detalhes() {
                     </div>
 
                     {/* Espaço com botão de Agendamento */}
-                    <div className='w-[624px] mt-[40px] border border-[#D9D9D9] rounded-[24px] flex flex-col items-center justify-center space-y-6 py-6 px-6'>
+                    <div className='w-full mt-[40px] border border-[#D9D9D9] rounded-[24px] flex flex-col items-center justify-center space-y-6 py-6 px-6'>
                         <p className='font-bold'>Deseja realizar outra consulta?</p>
                         <Button variant="default" size="xlg" onClick={() => setIsModalOpen(true)}> <Image src={check} alt="Check Icon" width={20} height={20} />Agendamento</Button>
                     </div>
