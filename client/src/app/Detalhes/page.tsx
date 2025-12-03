@@ -1,7 +1,7 @@
 "use client"
 
 import { useSearchParams } from "next/navigation"
-import { useState } from "react";
+import { useState, Suspense } from "react";
 import { arrow_back, check } from "@/assets";
 import { HistoryCard } from "@/components/Historycard";
 import { dog, cat, cow, horse, pig, sheep } from "@/assets"
@@ -21,7 +21,7 @@ const animalImages: Record<string, string> = {
   ovelha: sheep.src
 };
 
-export default function Detalhes() {
+function DetalhesContent() {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const search = useSearchParams();
 
@@ -96,7 +96,7 @@ export default function Detalhes() {
                     {/* Tipo de consulta */}
                     <div className='flex flex-row items-center space-x-6 text-[16px]'>
                         <p className='font-bold'>Tipo de consulta:</p>
-                        <p className='w-auto h-[30px] px-4 flex items-center justify-center rounded-sm' style={{backgroundColor: color}}>{appointment}</p>
+                        <p className={`w-auto h-[30px] px-4 flex items-center justify-center rounded-sm bg-${color}`}>{appointment}</p>
                     </div>
 
                     {/* Espaço com botão de Agendamento */}
@@ -127,5 +127,13 @@ export default function Detalhes() {
                     onClose={() => setIsModalOpen(false)} />
 
         </>
+    );
+}
+
+export default function Detalhes() {
+    return (
+        <Suspense fallback={<div>Carregando...</div>}>
+            <DetalhesContent />
+        </Suspense>
     );
 }

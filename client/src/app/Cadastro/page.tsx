@@ -205,6 +205,7 @@ export default function Cadastro() {
                                     className={`border border-black px-4 py-3 rounded-[8px] focus:outline-none w-full h-[50px] bg-white cursor-pointer ${consult === "" ? "text-gray-400" : "text-black"}`}
                                     value={consult}
                                     onChange={(e) => setConsult(e.target.value)}
+                                    aria-label="Tipo de consulta"
                                 >
                                     <option value="" disabled hidden>Selecione aqui</option>
                                     <option value="FIRST">Primeira Consulta</option>
