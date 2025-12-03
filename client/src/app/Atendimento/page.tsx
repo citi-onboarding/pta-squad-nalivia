@@ -1,14 +1,16 @@
-"use client"
+"use client";
 
-import SearchBar from "@/components/SearchBar"
-import Header from "../../components/Header"
-import { useState } from "react"
-import { PetCard } from "@/components/PetCard"
-import { add } from "@/assets"
-import Image from "next/image"
-import Link from "next/link"
-import React from "react"
-import { Button } from "@/components/Button"
+import SearchBar from "@/components/SearchBar";
+import Header from "../../components/Header";
+import { useState, useEffect } from "react";
+import api from '../../services/api';
+import { PetCard } from "@/components/PetCard";
+import { add } from "@/assets";
+import Image from "next/image";
+import Link from "next/link";
+import React from "react";
+import { Button } from "@/components/Button";
+
 
 interface PetCardProps {
     imageSrc?: string;
@@ -21,105 +23,29 @@ interface PetCardProps {
     petType: string;
 }
 
-export const PetCardMock: PetCardProps[]= [
-    {
-        date: "21/01",
-        time: "14:30",
-        doctor: "Ana Bezerra",
-        petName: "Luna",
-        ownerName: "Mariana Torres",
-        petType: "gato",
-        appointment: "Retorno"
-    },
-    {
-        date: "17/11",
-        time: "09:15",
-        doctor: "Henrique Rocha",
-        petName: "Thor",
-        ownerName: "Rafael Lima",
-        petType: "cachorro",
-        appointment: "Primeira consulta"
-    },
-    {
-        date: "23/12",
-        time: "16:00",
-        doctor: "Sofia Martins",
-        petName: "Mimi",
-        ownerName: "João Nogueira",
-        petType: "gato",
-        appointment: "Check-up"
-      },
-      {
-        date: "24/09",
-        time: "10:45",
-        doctor: "Paulo Mendes",
-        petName: "Bela",
-        ownerName: "Fazenda Esperança",
-        petType: "ovelha",
-        appointment: "Vacinação"
-      },
-      {
-        date: "04/06",
-        time: "13:20",
-        doctor: "Júlia Freitas",
-        petName: "Relâmpago",
-        ownerName: "Haras Ouro",
-        petType: "cavalo",
-        appointment: "Check-up"
-      },
-      {
-        date: "12/07",
-        time: "08:50",
-        doctor: "Marcelo Azevedo",
-        petName: "Mimosa",
-        ownerName: "Sitio Vista",
-        petType: "vaca",
-        appointment: "Vacinação"
-      },
-      {
-        date: "14/12",
-        time: "11:00",
-        doctor: "Camila Arruda",
-        petName: "Tutu",
-        ownerName: "Pedro Duarte",
-        petType: "pig",
-        appointment: "Primeira consulta"
-      },
-      {
-        date: "20/11",
-        time: "15:15",
-        doctor: "Lucas Ferraz",
-        petName: "Amora",
-        ownerName: "Bianca Cavalcanti",
-        petType: "gato",
-        appointment: "Vacinação"
-      },
-      {
-        date: "30/04",
-        time: "17:40",
-        doctor: "Helena Reis",
-        petName: "Bob",
-        ownerName: "Carlos Silva",
-        petType: "cachorro",
-        appointment: "Vacinação"
-      },
-      {
-        date: "16/12",
-        time: "12:30",
-        doctor: "André Santos",
-        petName: "Tornado",
-        ownerName: "Haras Primavera",
-        petType: "pig",
-        appointment: "Retorno"
-      }
-    ]; 
 
 export default function Atendimento() {
+    const [consult, setConsult] = useState<any[]>([])
     const [search, setSearch] = useState('');
     const [modo, setModo] = useState<"agendamento" | "historico">("agendamento");
     const [startDate, setStartDate] = useState('');
     const [endDate, setEndDate] = useState('');
 
+    
+    useEffect(() => {
+        loadCards();
+    }, []);
+
+    const loadCards = async () => {
+        try {
+            const response = await api.get('/consult');
+            setConsult(response.data);
+            console.log('GET /consult - Consultas carregadas:', response.data);
+        } catch (error) {
+            console.error('Erro ao carregar usuários:', error);
+        }    
+        };
+    
     function isHistorico(cardDate: string) {
         const today = new Date(); 
         const [day, month] = cardDate.split('/').map(Number);
@@ -134,7 +60,7 @@ export default function Atendimento() {
         return new Date(year, month - 1, day);
     }
 
-    const filterDate = PetCardMock.filter(card => {
+    const filterDate = consult.filter(card => {
         const cardDate = CardDate(card.date);
       
         if (startDate && endDate) {
@@ -182,7 +108,7 @@ export default function Atendimento() {
         </div>
 
         <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 mx-[10.10%] mt-8'>
-            {filter.map((card, index) => (<PetCard key={index} {...card}></PetCard>))}
+            {consult.map((card, index) => (<PetCard key={index} {...card}></PetCard>))}
         </div>
 
         {/* New register button */}
@@ -200,4 +126,6 @@ export default function Atendimento() {
         </>
     )
 }
+
+
   
