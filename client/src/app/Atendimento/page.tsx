@@ -21,7 +21,7 @@ interface PetCardProps {
     petType: string;
 }
 
-export const PetCardMock: PetCardProps[]= [
+const PetCardMock: PetCardProps[]= [
     {
         date: "21/01",
         time: "14:30",
