@@ -14,13 +14,6 @@ interface HistoryCardProps {
   petType: string;
 }
 
-const appointmentColor: Record<string, string> = {
-  "Primeira Consulta": "#BFB5FF",
-  "Retorno": "#FF641999",
-  "Check-up": "#9CFF95",
-  "Vacinação": "#AAE1FF",
-};
-
 export const HistoryCard = ({
   date,
   time,
@@ -31,26 +24,11 @@ export const HistoryCard = ({
   petType,
 }: HistoryCardProps) => {
 
-  const today = new Date();
-  const [day, month] = date.split("/").map(Number);
-  const consultationDate = new Date(today.getFullYear(), month - 1, day);
-  const isExpired = consultationDate < today;
-  const cardColor = isExpired ? "#F0F0F0" : appointmentColor[appointment];
+  const cardColor = "#F0F0F0"; // Histórico sempre cinza
   const router = useRouter();
 
   const handleClick = () => {
-    const params = new URLSearchParams({
-    date,
-    time,
-    doctor,
-    petName,
-    ownerName,
-    appointment,
-    petType,
-    cardColor
-    });
-
-    router.push(`/Detalhes?${params.toString()}`);
+    router.push(`/Detalhes?date=${date}&time=${time}&doctor=${doctor}&petName=${petName}&ownerName=${ownerName}&appointment=${appointment}&petType=${petType}`);
   }
 
   return (
