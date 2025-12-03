@@ -64,9 +64,9 @@ export default function Detalhes() {
                 </div>
             </div>
 
-            <div className="w-[79.8%] h-auto flex flex-row gap-[18.02%] ml-[10.10%] mr-[10.10%] mt-6">
+            <div className="w-[79.8%] h-auto flex flex-col lg:flex-row justify-between gap-8 ml-[10.10%] mr-[10.10%] mt-6">
                 {/* Lado esquerdo */}
-                <div className="w-[32.86%]">
+                <div className="w-full">
                     <div>
                         <p className='w-[5%] h-auto text-[24px] font-bold'>Paciente</p>
                     </div>
