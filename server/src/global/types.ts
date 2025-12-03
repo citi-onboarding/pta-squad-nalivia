@@ -1,6 +1,7 @@
 type InsertableDatabase = {
   httpStatus: number;
   message: string;
+  values?: any;
 };
 
 type GetableDatabase<Type> = {

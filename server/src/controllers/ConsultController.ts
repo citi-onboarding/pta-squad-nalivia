@@ -18,7 +18,7 @@ class ConsultController implements Crud {
 
         if (isAnyUndefined) return response.status(400).send();
 
-        const NewConsult = { type, description, dateTime, patientId, doctorName };
+        const NewConsult = { type, description, dateTime: new Date(dateTime), patientId: Number(patientId), doctorName };
         const { httpStatus, message } = await this.citi.insertIntoDatabase(NewConsult);
 
         return response.status(httpStatus).send({ message });

@@ -79,6 +79,7 @@ export default function Atendimento() {
         </div>
 
         <div className='grid grid-cols-[repeat(auto-fit,minmax(494.67px,1fr))] gap-6 justify-items-center px-4 sm:px-8 md:px-16 lg:px-32 xl:px-[194px] mt-8'>
+        <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 mx-[10.10%] mt-8'>
             {filter.map((card, index) => (<PetCard key={index} {...card}></PetCard>))}
         </div>
 

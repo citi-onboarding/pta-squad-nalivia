@@ -17,6 +17,16 @@ const animalImages: Record<string, string> = {
 
 };
 
+const speciesMap: Record<string, string> = {
+    "cachorro": "DOG",
+    "gato": "CAT",
+    "ovelha": "SHEEP",
+    "porco": "PIG",
+    "vaca": "COW",
+    "cavalo": "HORSE"
+};
+
+
 
 export default function Cadastro() {
     const [name, setName] = useState("");
@@ -35,31 +45,74 @@ export default function Cadastro() {
     today.setMinutes(today.getMinutes() - today.getTimezoneOffset());
     const dataMinima = today.toISOString().split("T")[0];
 
-    function handleCadastro(event: FormEvent) {
+    async function handleCadastro(event: FormEvent) {
         event.preventDefault(); 
-        
 
         if (!name || !age || !tutor || !specie || !consult || !doctor || !date || !time) {
-        alert("Por favor, preencha todos os campos antes de finalizar!");
-        return; 
-    }
-        // objeto para mandar para usar a requisição do back
-        const dadosPet = {
-            nome: name,
-            idade: age,
-            tutor: tutor,
-            especie: specie,
-            consulta: consult,
-            medico: doctor,
-            data: date,
-            hora: time,
-            descrição: description
-        };
+            alert("Por favor, preencha todos os campos antes de finalizar!");
+            return; 
+        }
 
-        console.log("Dados prontos para envio:", dadosPet);
-       
+        try {
+          
+            const patientPayload = {
+                name: name,
+                tutor: tutor,
+                age: Number(age),
+                specie: speciesMap[specie]
+            };
 
-        setIsModalOpen(true);
+            const responsePatient = await fetch('http://localhost:3001/patient', { 
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(patientPayload),
+            });
+
+            if (!responsePatient.ok) {
+                throw new Error("Falha ao cadastrar paciente.");
+            }
+
+            const patientData = await responsePatient.json();
+            
+            
+            const newPatientId = patientData.values?.id;
+
+            if (!newPatientId) {
+                throw new Error("O servidor não retornou o ID do paciente.");
+            }
+
+            console.log("Paciente criado com ID:", newPatientId);
+
+           
+            const dateTimeCombined = `${date}T${time}:00`;
+
+            const consultPayload = {
+                type: consult,
+                description: description,
+                dateTime: dateTimeCombined, 
+                doctorName: doctor,       
+                patientId: newPatientId     
+            };
+
+             const responseConsult = await fetch('http://localhost:3001/consult', { 
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(consultPayload),
+            });
+
+            if (!responseConsult.ok) {
+                throw new Error("Paciente criado, mas falha ao criar a consulta.");
+            }
+
+            const consultData = await responseConsult.json();
+            console.log("Consulta agendada:", consultData);
+
+            setIsModalOpen(true); 
+
+        } catch (error) {
+            console.error("Erro no processo:", error);
+            alert("Erro ao realizar o cadastro. Verifique o console para mais detalhes.");
+        }
     }
 
     return (
@@ -154,10 +207,10 @@ export default function Cadastro() {
                                     onChange={(e) => setConsult(e.target.value)}
                                 >
                                     <option value="" disabled hidden>Selecione aqui</option>
-                                    <option value="rotina">Primeira Consulta</option>
-                                    <option value="emergencia">Check-up</option>
-                                    <option value="vacina">Vacinação</option>
-                                    <option value="retorno">Retorno</option>
+                                    <option value="FIRST">Primeira Consulta</option>
+                                    <option value="CHECKUP">Check-up</option>
+                                    <option value="VACINATION">Vacinação</option>
+                                    <option value="RETURN">Retorno</option>
                                 </select>
                                 <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none">
                                     <Image src={arrow_down} alt="" width={16} height={16} />

@@ -64,22 +64,22 @@ export default class Citi<Entity extends ModelNames> {
     object: T
   ): Promise<InsertableDatabase> {
     try {
-      await prisma[
+      const createdItem = await prisma[
         this.entity.toLowerCase() as Uncapitalize<Prisma.ModelName>
-        //@ts-expect-error
       ].create({
         data: object,
       });
-      Terminal.show(Message.INSERTED_IN_DATABASE);
       return {
         httpStatus: 201,
         message: Message.INSERTED_IN_DATABASE,
+        values: createdItem
       };
     } catch (error) {
       Terminal.show(Message.ERROR_INSERTING_DATABASE);
       return {
         httpStatus: 400,
         message: Message.ERROR_INSERTING_DATABASE,
+        
       };
     }
   }
