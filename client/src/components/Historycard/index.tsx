@@ -54,7 +54,7 @@ export const HistoryCard = ({
   }
 
   return (
-    <div onClick={handleClick} style={{backgroundColor: "#F0F0F0",}}
+    <div style={{backgroundColor: cardColor,}}
       className="flex h-[82px] w-[501px] rounded-[16px] py-4 px-6 items-center justify-between cursor-pointer hover:opacity-90 transition-opacity"> 
 
       <div className="
@@ -82,7 +82,7 @@ export const HistoryCard = ({
         </span>
       </div>
 
-      <div className="flex justify-center">
+      <div onClick={handleClick} className="flex justify-center">
           <img src={arrow.src} alt="arrow" className="w-[24px] h-[24px]" />      
       </div>
 

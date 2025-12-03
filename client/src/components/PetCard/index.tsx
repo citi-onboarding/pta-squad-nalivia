@@ -48,18 +48,7 @@ export const PetCard = ({
   const router = useRouter();
   
   const handleClick = () => {
-    const params = new URLSearchParams({
-      date,
-      time,
-      doctor,
-      petName,
-      ownerName,
-      appointment,
-      petType,
-      cardColor
-    });
-  
-    router.push(`/Detalhes?${params.toString()}`);
+    router.push(`/Detalhes?date=${date}&time=${time}&doctor=${doctor}&petName=${petName}&ownerName=${ownerName}&appointment=${appointment}&petType=${petType}`);
   };
 
   return (
@@ -121,6 +110,7 @@ export const PetCard = ({
           <img 
           src = {animalImages[petType]}
           className="w-[69px] h-[70px] mt-[16px]"
+          alt="Imagem do Pet"
           />
         </div>
 
