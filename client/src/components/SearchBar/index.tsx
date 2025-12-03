@@ -16,11 +16,11 @@ export default function SearchBar({ onSearch }: SearchBarProps) {
     }
 
     return (
-        <div className='w-[34.375%] h-auto mt-8 ml-[12.6%] mr-[55.52%] flex flex-col text-[24px] gap-6'>
+        <div className='w-full md:w-[42%] px-4 sm:px-8 md:px-16 lg:px-32 xl:pl-[194px] xl:pr-0 mt-6 md:mt-8 flex flex-col text-lg md:text-[24px] gap-4 md:gap-6'>
             <p>Qual é o médico?</p>
-            <div className='flex flex-row gap-6'>
+            <div className='flex flex-col sm:flex-row gap-4 md:gap-6'>
                 <input type='search' value={search} onChange={(e) => setSearch(e.target.value)} onKeyDown={(e) => {if (e.key === "Enter") {handleSearch();}}} placeholder='Pesquise aqui...' className='w-full h-[50px] rounded-[8px] p-[16px] border border-black text-[16px] outline-none'/>
-                <Button variant='buscar' size='sm' className='mt-1' onClick={handleSearch}>Buscar</Button>
+                <Button variant='buscar' size='sm' className='w-full sm:w-auto sm:mt-1' onClick={handleSearch}>Buscar</Button>
             </div>
         </div>
     );

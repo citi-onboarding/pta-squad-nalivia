@@ -55,8 +55,8 @@ export default function Detalhes() {
             <Header />
 
             {/* Início */}
-            <div className='w-[40%] h-auto mt-12 ml-[10.10%] flex flex-col space-x-8 space-y-6'>
-                <div className='text-[48px] font-bold flex flex-row items-center gap-4'>
+            <div className='px-4 sm:px-8 md:px-16 lg:px-32 xl:px-[194px] mt-6 md:mt-8 lg:mt-[48px] flex flex-col space-y-6'>
+                <div className='text-2xl md:text-4xl lg:text-[48px] font-bold flex flex-row items-center gap-4'>
                     <Link href="/Atendimento" className="p-1 cursor-pointer hover:opacity-80 transition-opacity" aria-label="Voltar para a tela de Atendimento">
                         <Image src={arrow_back} alt="Arrow" width={32} height={32} />
                     </Link>

@@ -50,11 +50,11 @@ export default function Atendimento() {
     return (
         <>
         <Header />
-        <div className='w-[19%] h-auto mt-12 mb-8 ml-[12.6%] text-[48px] font-bold'>
+        <div className='w-[19%] h-auto mt-6 md:mt-8 lg:mt-[48px] mb-8 px-4 sm:px-8 md:px-16 lg:px-32 xl:px-[194px] text-2xl md:text-4xl lg:text-[48px] font-bold'>
             <p>Atendimento</p>
         </div>
         <SearchBar onSearch={setSearch}/>
-        <div className='flex flex-row justify-between mt-[40px] ml-[12.6%] mr-[10.10%] text-[16px]'>
+        <div className='flex flex-row justify-between mt-[40px] px-4 sm:px-8 md:px-16 lg:px-32 xl:px-[194px] text-[16px]'>
             {/* Filter by status */}
             <div className='w-[243px] h-[58px] justify-center items-center gap-4 flex flex-row bg-[#F0F0F0] rounded-xl'>
                 <div onClick={() => setModo('agendamento')} 
@@ -78,12 +78,12 @@ export default function Atendimento() {
             </div>
         </div>
 
-        <div className='grid grid-cols-[repeat(auto-fit,minmax(494.67px,1fr))] gap-6 justify-items-center mr-[6.2%] ml-[8.9%] mt-8'>
+        <div className='grid grid-cols-[repeat(auto-fit,minmax(494.67px,1fr))] gap-6 justify-items-center px-4 sm:px-8 md:px-16 lg:px-32 xl:px-[194px] mt-8'>
             {filter.map((card, index) => (<PetCard key={index} {...card}></PetCard>))}
         </div>
 
         {/* New register button */}
-        <div className='mr-[10.10%] mt-[185px] flex flex-row justify-end'>
+        <div className='px-4 sm:px-8 md:px-16 lg:px-32 xl:px-[194px] mt-[185px] flex flex-row justify-end'>
             <Button asChild variant="default">
                 <Link href='/Cadastro'>
                     <Image src={add} alt="Add Icon" width={20} height={20} />
