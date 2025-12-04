@@ -68,7 +68,6 @@ export default function Atendimento() {
         const petName = patient?.name || "";
 
         const matchesSearch = search === '' || 
-            petName.toLowerCase().includes(search.toLowerCase()) ||
             consult.doctorName.toLowerCase().includes(search.toLowerCase());
         
         const consultDate = new Date(consult.dateTime);
