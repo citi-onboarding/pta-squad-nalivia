@@ -146,8 +146,8 @@ export default function Atendimento() {
                     time={horaFormatada}
                     doctor={consult.doctorName}
                     appointment={appointmentMap[consult.type]}
-                    petName={patient?.name}
-                    owenerName={patient?.tutor}
+                    petName={patient?.name || ""}
+                    ownerName={patient?.tutor || ""}
                     petType={normalizedSpecie}
                 />
             )
