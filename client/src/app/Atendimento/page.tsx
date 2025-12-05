@@ -113,7 +113,7 @@ export default function Atendimento() {
             </div>
         </div>
 
-        <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 mx-[10.10%] mt-8'>
+        <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 px-4 sm:px-8 md:px-16 lg:px-32 xl:px-[194px] mt-8'>
             {filteredConsults.map((consult) => {
                 const patient = patients.find(p => p.id === consult.patientId);
 
