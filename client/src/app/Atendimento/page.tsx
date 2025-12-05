@@ -113,45 +113,47 @@ export default function Atendimento() {
             </div>
         </div>
 
-        <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 px-4 sm:px-8 md:px-16 lg:px-32 xl:px-[194px] mt-8'>
-            {filteredConsults.map((consult) => {
-                const patient = patients.find(p => p.id === consult.patientId);
+        <div className='grid grid-cols-[repeat(auto-fit,minmax(494.67px,1fr))] gap-6 justify-items-center px-4 sm:px-8 md:px-16 lg:px-32 xl:px-[194px] mt-8'>
+            <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 mx-[10.10%] mt-8'>
+                {filteredConsults.map((consult) => {
+                    const patient = patients.find(p => p.id === consult.patientId);
 
-                const dataObj = new Date(consult.dateTime);
-                const diaFormatado = dataObj.toLocaleDateString('pt-BR', { timeZone: 'UTC', day: '2-digit', month: '2-digit' });
-                const horaFormatada = dataObj.toLocaleTimeString('pt-BR', {timeZone: 'UTC', hour: '2-digit', minute: '2-digit' });
+                    const dataObj = new Date(consult.dateTime);
+                    const diaFormatado = dataObj.toLocaleDateString('pt-BR', { timeZone: 'UTC', day: '2-digit', month: '2-digit' });
+                    const horaFormatada = dataObj.toLocaleTimeString('pt-BR', {timeZone: 'UTC', hour: '2-digit', minute: '2-digit' });
 
-                const appointmentMap: Record<string, string> = {
-                    "FIRST": "Primeira consulta",
-                    "CHECKUP": "Check-up",
-                    "VACINATION": "Vacinação",
-                    "RETURN": "Retorno"
-                };
+                    const appointmentMap: Record<string, string> = {
+                        "FIRST": "Primeira consulta",
+                        "CHECKUP": "Check-up",
+                        "VACINATION": "Vacinação",
+                        "RETURN": "Retorno"
+                    };
 
-                const speciesMap: Record<string, string> = {
-                    "DOG": "cachorro",
-                    "CAT": "gato",
-                    "COW": "vaca",
-                    "HORSE": "cavalo",
-                    "PIG": "pig",
-                    "SHEEP": "ovelha"
-                };
+                    const speciesMap: Record<string, string> = {
+                        "DOG": "cachorro",
+                        "CAT": "gato",
+                        "COW": "vaca",
+                        "HORSE": "cavalo",
+                        "PIG": "pig",
+                        "SHEEP": "ovelha"
+                    };
 
-                const rawSpecie = patient?.specie || "";
-                const normalizedSpecie = speciesMap[rawSpecie];
-            return (
-                <PetCard
-                    key={consult.id}
-                    date={diaFormatado}
-                    time={horaFormatada}
-                    doctor={consult.doctorName}
-                    appointment={appointmentMap[consult.type]}
-                    petName={patient?.name || ""}
-                    ownerName={patient?.tutor || ""}
-                    petType={normalizedSpecie}
-                />
-            )
-        })}
+                    const rawSpecie = patient?.specie || "";
+                    const normalizedSpecie = speciesMap[rawSpecie];
+                return (
+                    <PetCard
+                        key={consult.id}
+                        date={diaFormatado}
+                        time={horaFormatada}
+                        doctor={consult.doctorName}
+                        appointment={appointmentMap[consult.type]}
+                        petName={patient?.name || ""}
+                        ownerName={patient?.tutor || ""}
+                        petType={normalizedSpecie}
+                    />
+                )
+            })}
+            </div>
         </div>
 
         {/* New register button */}
@@ -171,4 +173,7 @@ export default function Atendimento() {
 }
 
 
-  
+        // <div className='grid grid-cols-[repeat(auto-fit,minmax(494.67px,1fr))] gap-6 justify-items-center px-4 sm:px-8 md:px-16 lg:px-32 xl:px-[194px] mt-8'>
+        // <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 mx-[10.10%] mt-8'>
+        //     {filter.map((card, index) => (<PetCard key={index} {...card}></PetCard>))}
+        // </div>
