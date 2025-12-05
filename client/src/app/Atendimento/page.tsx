@@ -118,7 +118,7 @@ export default function Atendimento() {
                 const patient = patients.find(p => p.id === consult.patientId);
 
                 const dataObj = new Date(consult.dateTime);
-                const diaFormatado = dataObj.toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit' });
+                const diaFormatado = dataObj.toLocaleDateString('pt-BR', { timeZone: 'UTC', day: '2-digit', month: '2-digit' });
                 const horaFormatada = dataObj.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
 
                 const appointmentMap: Record<string, string> = {
@@ -147,7 +147,7 @@ export default function Atendimento() {
                     doctor={consult.doctorName}
                     appointment={appointmentMap[consult.type]}
                     petName={patient?.name}
-                    owenerName={patient?.tutor}
+                    ownerName={patient?.tutor}
                     petType={normalizedSpecie}
                 />
             )
