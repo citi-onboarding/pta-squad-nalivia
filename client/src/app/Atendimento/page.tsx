@@ -119,7 +119,7 @@ export default function Atendimento() {
 
                 const dataObj = new Date(consult.dateTime);
                 const diaFormatado = dataObj.toLocaleDateString('pt-BR', { timeZone: 'UTC', day: '2-digit', month: '2-digit' });
-                const horaFormatada = dataObj.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
+                const horaFormatada = dataObj.toLocaleTimeString('pt-BR', {timeZone: 'UTC', hour: '2-digit', minute: '2-digit' });
 
                 const appointmentMap: Record<string, string> = {
                     "FIRST": "Primeira consulta",
