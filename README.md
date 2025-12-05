@@ -131,6 +131,8 @@ O server contém uma estrutura base de código voltada à construção de uma AP
       DATABASE_DB=${PROJECT_NAME}
 
       DATABASE_URL=${DATABASE_TYPE}://${DATABASE_USER}:${DATABASE_PASSWORD}@${DATABASE_HOST}:${DATABASE_PORT}/${DATABASE_DB}
+      EMAIL_USER=gmomenezes1@gmail.com
+      EMAIL_PASS=xtwo pkri fute tgmh
    ```
 3. Abra um novo terminal no vscode
 4. Com o terminal aberto, escreva essa sentença abaixo e dê enter
