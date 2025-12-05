@@ -89,7 +89,7 @@ export default function Atendimento() {
             <p>Atendimento</p>
         </div>
         <SearchBar onSearch={(valorDigitado) => setSearch(valorDigitado)} />
-        <div className='flex flex-row justify-between mt-[40px] ml-[10.10%] mr-[10.10%] text-[16px]'>
+        <div className='flex flex-row justify-between mt-[40px] px-4 sm:px-8 md:px-16 lg:px-32 xl:px-[194px] text-[16px]'>
             {/* Filter by status */}
             <div className='w-[243px] h-[58px] justify-center items-center gap-4 flex flex-row bg-[#F0F0F0] rounded-xl'>
                 <div onClick={() => setModo('agendamento')} 
@@ -118,8 +118,8 @@ export default function Atendimento() {
                 const patient = patients.find(p => p.id === consult.patientId);
 
                 const dataObj = new Date(consult.dateTime);
-                const diaFormatado = dataObj.toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit' });
-                const horaFormatada = dataObj.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
+                const diaFormatado = dataObj.toLocaleDateString('pt-BR', { timeZone: 'UTC', day: '2-digit', month: '2-digit' });
+                const horaFormatada = dataObj.toLocaleTimeString('pt-BR', {timeZone: 'UTC', hour: '2-digit', minute: '2-digit' });
 
                 const appointmentMap: Record<string, string> = {
                     "FIRST": "Primeira consulta",
