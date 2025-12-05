@@ -1,72 +1,85 @@
-import React, { useState } from "react";
+"use client"
+
+import React, { useState, useEffect } from "react";
 import { View, Text, FlatList } from "react-native";
 import { PetCard } from "../src/components/PetCard";
 import DataFilter from "../src/components/DataFilter";
 import { LogoPet } from "../src/assets";
+import api from '../src/services/api';
 
 interface Appointment {
-  id: string;
-  petName: string;
-  date: string;
-  doctor: string;
-  ownerName: string;
-  time: string;
-  petType: string;
-  appointment: string;
+  id: number;
+  type: string;
+  dateTime: string;
+  doctorName: string;
+  patientId: number;
 }
 
-const appointmentsData: Appointment[] = [
-  {
-    id: '1',
-    petName: "Luna",
-    date: "30/12",
-    doctor: "Dr. José Carlos",
-    ownerName: "João Alves",
-    time: "09:30",
-    petType: "cavalo",
-    appointment: "Primeira Consulta",
-  },
-  {
-    id: '2',
-    petName: "Chica",
-    date: "30/12",
-    doctor: "Joao Pedro",
-    ownerName: "Gabriel",
-    time: "14:20",
-    petType: "cachorro",
-    appointment: "Primeira Consulta",
-  },
-  {
-    id: '3',
-    petName: "Rex",
-    date: "30/12",
-    doctor: "Dra. Ana",
-    ownerName: "Maria",
-    time: "19:00",
-    petType: "gato",
-    appointment: "Retorno",
-  },
-    // Adicionei mais itens para testar o scroll se necessário
-    { id: '4', petName: "Toto", date: "30/12", doctor: "Dr. Ana", ownerName: "Maria", time: "20:00", petType: "porco", appointment: "Check-up" },
-    { id: '5', petName: "Mel", date: "30/12", doctor: "Dr. Ana", ownerName: "Maria", time: "21:00", petType: "ovelha", appointment: "Vacinação" },
-];
+interface Patient {
+  id: number;
+  name: string;
+  tutor: string;
+  specie: string;
+  age: number;
+}
+
 
 const App: React.FC = () => {
+  const [patients, setPatient] = useState<Patient[]>([]);
   const [activeFilter, setActiveFilter] = useState<string>('');
+  const [appointments, SetAppointments] = useState<Appointment[]>([]);
 
-  const getHour = (timeString: string) => {
-    const [hour] = timeString.split(':');
-    return parseInt(hour, 10);
+
+
+  useEffect(() => {
+    loadCards();
+  }, []);
+
+  const loadCards = async () => {
+    try {
+      const consultResponse = await api.get('/consult');
+      const patientResponse = await api.get('/patient');
+
+      SetAppointments(consultResponse.data);
+      setPatient(patientResponse.data);
+      console.log('GET /consult - Consultas carregadas:', consultResponse.data);
+      console.log('GET /patient - Pacientes carregados:', patientResponse.data);
+
+    } catch (error){
+      console.error('Erro ao carregar usuários:', error);
+    }
   };
 
-  const filteredAppointments = appointmentsData.filter((item) => {
+  const getHour = (dateTimeString: string) => {
+    const date = new Date(dateTimeString);
+    return date.getUTCHours();
+  };
+
+  const filteredAppointments = appointments.filter((appointment) => {
+
     if (activeFilter === '') return true;
-    const hour = getHour(item.time);
+    const hour = getHour(appointment.dateTime);
     if (activeFilter === 'sun') return hour >= 5 && hour < 12;
     if (activeFilter === 'cloud') return hour >= 12 && hour < 18;
     if (activeFilter === 'moon') return hour >= 18 || hour < 5;
     return false;
   });
+
+  const appointmentMap: Record<string, string> = {
+    "FIRST": "Primeira Consulta",
+    "CHECKUP": "Check-up",
+    "VACINATION": "Vacinação",
+    "RETURN": "Retorno"
+  };
+
+  const speciesMap: Record<string, string> = {
+    "DOG": "cachorro",
+    "CAT": "gato",
+    "COW": "vaca",
+    "HORSE": "cavalo",
+    "PIG": "pig",
+    "SHEEP": "ovelha"
+  };
 
   return (
     <View className="flex-1 ">
@@ -90,22 +103,33 @@ const App: React.FC = () => {
         <View className="mt-4 w-full flex-1"> 
           <FlatList
             data={filteredAppointments}
-            keyExtractor={(item) => item.id}
+            keyExtractor={(item) => item.id.toString()}
             contentContainerStyle={{ paddingBottom: 20 }} 
             showsVerticalScrollIndicator={false}
-            renderItem={({ item }) => (
+            renderItem={({ item }) => {
+              
+              const patient = patients.find(p => p.id === item.patientId);
+              const dataObj = new Date(item.dateTime);
+
+              const diaFormatado = dataObj.toLocaleDateString('pt-BR', { timeZone: 'UTC', day: '2-digit', month: '2-digit' });
+              const horaFormatada = dataObj.toLocaleTimeString('pt-BR', {timeZone: 'UTC', hour: '2-digit', minute: '2-digit' });
+
+              const rawSpecie = patient?.specie || ""; 
+              const normalizedSpecie = speciesMap[rawSpecie];
+              const normalizedType = appointmentMap[item.type] || item.type;
+              return (
               <View className="mb-4">
                   <PetCard
-                  petName={item.petName}
-                  date={item.date}
-                  doctor={item.doctor}
-                  ownerName={item.ownerName}
-                  time={item.time}
-                  petType={item.petType}
-                  appointment={item.appointment}
+                  petName={patient?.name}
+                  date={diaFormatado}
+                  doctor={item.doctorName}
+                  ownerName={patient?.tutor}
+                  time={horaFormatada}
+                  petType={normalizedSpecie}
+                  appointment={normalizedType}
                   />
               </View>
-            )}
+            )}}
             ListEmptyComponent={
               <Text className="text-center text-gray-500 mt-10">
                   Nenhum agendamento neste período.
