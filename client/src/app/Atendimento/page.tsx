@@ -85,7 +85,7 @@ export default function Atendimento() {
     return (
         <>
         <Header />
-        <div className='w-[19%] h-auto mt-12 mb-8 ml-[10.10%] text-[48px] font-bold'>
+        <div className='w-[19%] h-auto mt-6 md:mt-8 lg:mt-[48px] mb-8 px-4 sm:px-8 md:px-16 lg:px-32 xl:px-[194px] text-2xl md:text-4xl lg:text-[48px] font-bold'>
             <p>Atendimento</p>
         </div>
         <SearchBar onSearch={(valorDigitado) => setSearch(valorDigitado)} />
@@ -104,11 +104,11 @@ export default function Atendimento() {
             {/* Filter by date range */}
             <div className='flex flex-row gap-4'>
                 <div className='w-[140px] h-[56px] flex flex-row gap-1 justify-center items-center rounded-lg border border-[#F0F0F0]'>
-                    <input type='date' value={startDate} onChange={(e) => setStartDate(e.target.value)} className='w-[92px] outline-none' />
+                    <input type='date' value={startDate} onChange={(e) => setStartDate(e.target.value)} className='w-[92px] outline-none' aria-label='Data inicial' />
                 </div>
 
                 <div className='w-[140px] h-[56px] flex flex-row gap-1 justify-center items-center rounded-lg border border-[#F0F0F0]'>
-                    <input type='date' value={endDate} onChange={(e) => setEndDate(e.target.value)} className='w-[92px] outline-none' />
+                    <input type='date' value={endDate} onChange={(e) => setEndDate(e.target.value)} className='w-[92px] outline-none' aria-label='Data final' />
                 </div>
             </div>
         </div>
@@ -155,7 +155,7 @@ export default function Atendimento() {
         </div>
 
         {/* New register button */}
-        <div className='mr-[10.10%] mt-[185px] flex flex-row justify-end'>
+        <div className='px-4 sm:px-8 md:px-16 lg:px-32 xl:px-[194px] mt-[185px] flex flex-row justify-end'>
             <Button asChild variant="default">
                 <Link href='/Cadastro'>
                     <Image src={add} alt="Add Icon" width={20} height={20} />

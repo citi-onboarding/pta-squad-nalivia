@@ -48,7 +48,7 @@ export const PetCard = ({
   const router = useRouter();
   
   const handleClick = () => {
-    router.push("/a");
+    router.push(`/Detalhes?date=${date}&time=${time}&doctor=${doctor}&petName=${petName}&ownerName=${ownerName}&appointment=${appointment}&petType=${petType}`);
   };
 
   return (
@@ -109,7 +109,8 @@ export const PetCard = ({
         <div>
           <img 
           src = {animalImages[petType]}
-          className="w-[60px] h-[60px]"
+          className="w-[69px] h-[70px] mt-[16px]"
+          alt="Imagem do Pet"
           />
         </div>
 

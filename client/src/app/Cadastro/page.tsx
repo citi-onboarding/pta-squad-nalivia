@@ -6,6 +6,7 @@ import { dog, cat, cow, horse, pig, sheep, arrow_back, arrow_down} from "@/asset
 import ModalCadastro from "../../components/Modal/modalcadastro";
 import Link from "next/link";
 import Image from "next/image";
+import api from "@/services/api";
 
 const animalImages: Record<string, string> = {
     ovelha: sheep.src,
@@ -62,17 +63,9 @@ export default function Cadastro() {
                 specie: speciesMap[specie]
             };
 
-            const responsePatient = await fetch('http://localhost:3001/patient', { 
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(patientPayload),
-            });
+            const responsePatient = await api.post('/patient', patientPayload);
 
-            if (!responsePatient.ok) {
-                throw new Error("Falha ao cadastrar paciente.");
-            }
-
-            const patientData = await responsePatient.json();
+            const patientData = responsePatient.data;
             
             
             const newPatientId = patientData.values?.id;
@@ -94,17 +87,9 @@ export default function Cadastro() {
                 patientId: newPatientId     
             };
 
-             const responseConsult = await fetch('http://localhost:3001/consult', { 
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(consultPayload),
-            });
+            const responseConsult = await api.post('/consult', consultPayload);
 
-            if (!responseConsult.ok) {
-                throw new Error("Paciente criado, mas falha ao criar a consulta.");
-            }
-
-            const consultData = await responseConsult.json();
+            const consultData = responseConsult.data;
             console.log("Consulta agendada:", consultData);
 
             setIsModalOpen(true); 
@@ -205,6 +190,7 @@ export default function Cadastro() {
                                     className={`border border-black px-4 py-3 rounded-[8px] focus:outline-none w-full h-[50px] bg-white cursor-pointer ${consult === "" ? "text-gray-400" : "text-black"}`}
                                     value={consult}
                                     onChange={(e) => setConsult(e.target.value)}
+                                    aria-label="Tipo de consulta"
                                 >
                                     <option value="" disabled hidden>Selecione aqui</option>
                                     <option value="FIRST">Primeira Consulta</option>

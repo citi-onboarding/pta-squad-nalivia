@@ -1,26 +1,39 @@
+"use client"
+
+import { useRouter } from 'next/navigation';
 import React from 'react';
-import {arrow} from "@/assets"
+import { arrow } from "@/assets"
 
 interface HistoryCardProps {
   date: string;
   time: string;
   doctor: string;
+  petName: string;
+  ownerName: string;
   appointment: string;
+  petType: string;
 }
 
 export const HistoryCard = ({
   date,
   time,
   doctor,
+  petName,
+  ownerName,
   appointment,
+  petType,
 }: HistoryCardProps) => {
 
+  const cardColor = "#F0F0F0"; // Histórico sempre cinza
+  const router = useRouter();
+
+  const handleClick = () => {
+    router.push(`/Detalhes?date=${date}&time=${time}&doctor=${doctor}&petName=${petName}&ownerName=${ownerName}&appointment=${appointment}&petType=${petType}`);
+  }
+
   return (
-    <div
-      style={{
-        backgroundColor: "#F0F0F0",
-      }}
-      className="flex h-[82px] w-[501px] rounded-[16px] py-4 px-6 items-center justify-between "> 
+    <div style={{backgroundColor: cardColor,}}
+      className="flex h-[82px] w-[501px] rounded-[16px] py-4 px-6 items-center justify-between cursor-pointer hover:opacity-90 transition-opacity"> 
 
       <div className="
         bg-[#FFFFFFCC] 
@@ -47,10 +60,9 @@ export const HistoryCard = ({
         </span>
       </div>
 
-      <div className="flex justify-center">
-        <img src={arrow.src} alt="arrow" className="w-[24px] h-[24px]" />
+      <div onClick={handleClick} className="flex justify-center">
+          <img src={arrow.src} alt="arrow" className="w-[24px] h-[24px]" />      
       </div>
-
 
     </div>
   );
