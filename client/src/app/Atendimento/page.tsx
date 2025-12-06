@@ -142,6 +142,7 @@ export default function Atendimento() {
                 return (
                     <PetCard
                         key={consult.id}
+                        consultId={consult.id}
                         date={diaFormatado}
                         time={horaFormatada}
                         doctor={consult.doctorName}
