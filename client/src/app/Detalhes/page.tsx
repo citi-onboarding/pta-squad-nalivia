@@ -131,7 +131,7 @@ function DetalhesContent() {
                         <div className='flex flex-col'>
                             <div className='text-[24px] flex flex-col space-y-3 mt-[5.18%]'>
                                 <p className='font-bold'>{patient?.name}</p>
-                                <p>{patient?.age}</p>
+                                <p>{patient?.age} anos</p>
                             </div>
 
                             <div className='text-[16px] flex flex-col space-y-3 mt-auto mb-auto'>
