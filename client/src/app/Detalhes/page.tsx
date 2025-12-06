@@ -1,7 +1,7 @@
 "use client"
 
 import { useSearchParams } from "next/navigation"
-import { useState, Suspense } from "react";
+import { useState, Suspense, useEffect } from "react";
 import { arrow_back, check } from "@/assets";
 import { HistoryCard } from "@/components/Historycard";
 import { dog, cat, cow, horse, pig, sheep } from "@/assets"
@@ -10,7 +10,7 @@ import Header from "@/components/Header";
 import Image from "next/image";
 import Link from "next/link";
 import ModalNovaConsulta from "../../components/Modal/modalconsulta"
-import { PetCardMock } from "@/data/petCards";
+import api from "@/services/api";
 
 const animalImages: Record<string, string> = {
   cachorro: dog.src,
@@ -21,34 +21,88 @@ const animalImages: Record<string, string> = {
   ovelha: sheep.src
 };
 
+interface Consult {
+    id: number;
+    type: string;
+    description: string;
+    dateTime: string;
+    patientId: number;
+    doctorName: string;
+}
+
+interface Patient {
+    id: number;
+    name: string;
+    tutor: string;
+    specie: string;
+    age: number;
+}
+
+const appointmentMap: Record<string, string> = {
+    FIRST: "Primeira consulta",
+    CHECKUP: "Check-up",
+    VACINATION: "Vacinação",
+    RETURN: "Retorno",
+};
+  
+const speciesMap: Record<string, string> = {
+    DOG: "cachorro",
+    CAT: "gato",
+    COW: "vaca",
+    HORSE: "cavalo",
+    PIG: "pig",
+    SHEEP: "ovelha",
+};
+
+const appointmentColor: Record<string, string> = {
+    "Primeira consulta": "#BFB5FF",
+    "Retorno": "#FF641999",
+    "Check-up": "#9CFF95",
+    "Vacinação": "#AAE1FF",
+};
+
 function DetalhesContent() {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const search = useSearchParams();
+    const consultId = search.get("id");
 
-    const date = search.get('date');
-    const doctor = search.get('doctor');
-    const petName = search.get('petName');
-    const ownerName = search.get('ownerName');
-    const appointment = search.get('appointment');
-    const petType = search.get('petType');
-    const appointmentColor: Record<string, string> = {
-        "Primeira consulta": "#BFB5FF",
-        "Retorno": "#FF641999",
-        "Check-up": "#9CFF95",
-        "Vacinação": "#AAE1FF",
-    };
-    const color = appointment ? appointmentColor[appointment] : "#F0F0F0";
-    const today = new Date();
-    const historico = PetCardMock.filter(
-        (card) => {
-            const [day, month] = card.date.split("/").map(Number);
-            const consultationDate = new Date(today.getFullYear(), month - 1, day);
-            const isExpired = consultationDate < today;
+    const [consult, setConsult] = useState<any>(null);
+    const [patient, setPatient] = useState<any>(null);
+    const [history, setHistory] = useState<any[]>([]);
 
-            return(
-                card.petName.toLowerCase() === petName?.toLowerCase() && isExpired
-            );}
-      );
+    useEffect(() => {
+        if (!consultId) return;
+    
+        async function loadData() {
+            try {
+                const consultResponse = await api.get("/consult");
+                const foundConsult = consultResponse.data.find((c: any) => c.id === Number(consultId));
+                setConsult(foundConsult);
+    
+                if (foundConsult) {
+                    const patientResponse = await api.get("/patient");
+                    const foundPatient = patientResponse.data.find((p: any) => p.id === foundConsult.patientId);
+                    setPatient(foundPatient);
+    
+                    const historyPet = consultResponse.data.filter((c: any) => {
+                        const isSamePet = c.patientId === foundConsult.patientId;
+                        const isPast = new Date(c.dateTime) < new Date();
+                        const isNotCurrent = c.id !== Number(consultId);
+                        return isSamePet && isPast && isNotCurrent;
+                    });
+        
+                    setHistory(historyPet);
+                }
+            } catch (err) {
+                console.log("Erro:", err);
+            }
+        }
+    
+        loadData();
+    }, [consultId]);
+    
+    const appointmentChanged = consult ? appointmentMap[consult.type] : "";
+    const color = appointmentColor[appointmentChanged] || "#F0F0F0";
 
     return (
         <>
@@ -72,17 +126,17 @@ function DetalhesContent() {
                     </div>
                     {/* Informações do pet */}
                     <div className='flex flex-row space-x-[2.34%] mt-8'>
-                        <Image src={petType ? animalImages[petType] : ""} alt='Animal' width={295} height={299} className='mb-[5.55%]' />
+                        <Image src={patient ? animalImages[speciesMap[patient.specie]] : ''} alt='Animal' width={295} height={299} className='mb-[5.55%]' />
 
                         <div className='flex flex-col'>
                             <div className='text-[24px] flex flex-col space-y-3 mt-[5.18%]'>
-                                <p className='font-bold'>{petName}</p>
-                                <p>5 anos</p>
+                                <p className='font-bold'>{patient?.name}</p>
+                                <p>{patient?.age}</p>
                             </div>
 
                             <div className='text-[16px] flex flex-col space-y-3 mt-auto mb-auto'>
-                                <p>{ownerName}</p>
-                                <p>Dr. {doctor}</p>
+                                <p>{patient?.tutor}</p>
+                                <p>Dr. {consult?.doctorName}</p>
                             </div>
                         </div>
                     </div>
@@ -90,13 +144,13 @@ function DetalhesContent() {
                     {/* Descrição do problema */}
                     <div className='w-full space-y-3 text-[16px] mb-6'>
                         <p className='font-bold'>Descrição do problema:</p>
-                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries</p>
+                        <p>{consult?.description}</p>
                     </div>
 
                     {/* Tipo de consulta */}
                     <div className='flex flex-row items-center space-x-6 text-[16px]'>
                         <p className='font-bold'>Tipo de consulta:</p>
-                        <p className='w-auto h-[30px] px-4 flex items-center justify-center rounded-sm' style={{backgroundColor: color}}>{appointment}</p>
+                        <p className='w-auto h-[30px] px-4 flex items-center justify-center rounded-sm' style={{backgroundColor: color}}>{appointmentChanged}</p>
                     </div>
 
                     {/* Espaço com botão de Agendamento */}
@@ -113,7 +167,24 @@ function DetalhesContent() {
                         <p className='font-bold text-[24px]'>Histórico de Consultas</p>
                         
                         <div className='w-[558px] flex flex-col space-y-6 border border-[#D9D9D9] px-6 py-6 rounded-[24px]'>
-                            {historico.map((card, index) => (<HistoryCard key={index} {...card} />))}
+                        {history.map((c, index) => {
+                            const dataObj = new Date(c.dateTime);
+                            const dia = dataObj.toLocaleDateString('pt-BR', {timeZone: 'UTC', day: "2-digit", month: "2-digit" });
+                            const hora = dataObj.toLocaleTimeString('pt-BR', {timeZone: 'UTC', hour: "2-digit", minute: "2-digit" });
+    
+                            return (
+                                <HistoryCard
+                                    key={c.id}
+                                    date={dia}
+                                    time={hora}
+                                    doctor={c.doctorName}
+                                    appointment={appointmentMap[c.type]}
+                                    petName={patient?.name}
+                                    ownerName={patient?.tutor}
+                                    petType={speciesMap[patient?.specie]}
+                                />
+                            );
+                        })}
                         </div>
                     </div>
                 </div>

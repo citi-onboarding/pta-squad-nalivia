@@ -28,6 +28,7 @@ interface PetCardProps {
   ownerName: string;
   appointment: string;
   petType: string;
+  consultId: number;
 }
 
 export const PetCard = ({
@@ -38,6 +39,7 @@ export const PetCard = ({
   ownerName,
   petType,
   appointment,
+  consultId,
 }: PetCardProps) => {
 
   const today = new Date();
@@ -48,7 +50,7 @@ export const PetCard = ({
   const router = useRouter();
   
   const handleClick = () => {
-    router.push(`/Detalhes?date=${date}&time=${time}&doctor=${doctor}&petName=${petName}&ownerName=${ownerName}&appointment=${appointment}&petType=${petType}`);
+    router.push(`/Detalhes?id=${consultId}`);
   };
 
   return (
