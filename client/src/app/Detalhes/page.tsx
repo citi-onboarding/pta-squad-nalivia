@@ -75,21 +75,24 @@ function DetalhesContent() {
     
         async function loadData() {
             try {
-                const consultResponse = await api.get(`/consult/${consultId}`);
-                setConsult(consultResponse.data);
+                const consultResponse = await api.get("/consult");
+                const foundConsult = consultResponse.data.find((c: any) => c.id === Number(consultId));
+                setConsult(foundConsult);
     
-                const patientResponse = await api.get(`/patient/${consultResponse.data.patientId}`);
-                setPatient(patientResponse.data);
+                if (foundConsult) {
+                    const patientResponse = await api.get("/patient");
+                    const foundPatient = patientResponse.data.find((p: any) => p.id === foundConsult.patientId);
+                    setPatient(foundPatient);
     
-                const allConsults = await api.get("/consult");
-                const historyPet = allConsults.data.filter((c: any) => {
-                    const isSamePet = c.patientId === consultResponse.data.patientId;
-                    const isPast = new Date(c.dateTime) < new Date();
-                    const isNotCurrent = c.id !== Number(consultId);
-                    return isSamePet && isPast && isNotCurrent;
-                });
-    
-                setHistory(historyPet);
+                    const historyPet = consultResponse.data.filter((c: any) => {
+                        const isSamePet = c.patientId === foundConsult.patientId;
+                        const isPast = new Date(c.dateTime) < new Date();
+                        const isNotCurrent = c.id !== Number(consultId);
+                        return isSamePet && isPast && isNotCurrent;
+                    });
+        
+                    setHistory(historyPet);
+                }
             } catch (err) {
                 console.log("Erro:", err);
             }
@@ -98,7 +101,7 @@ function DetalhesContent() {
         loadData();
     }, [consultId]);
     
-    const appointmentChanged = appointmentMap[consult.type];
+    const appointmentChanged = consult ? appointmentMap[consult.type] : "";
     const color = appointmentColor[appointmentChanged] || "#F0F0F0";
 
     return (
